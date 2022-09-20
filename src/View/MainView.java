@@ -6,10 +6,12 @@ import java.awt.*;
 public class MainView extends JFrame {
 
     private JFrame frame = new JFrame();
+    private FourthAngle room;
     public MainView(){
         super("Let me Out!");
         initGUI();
-        // mainFrame = this.frame;
+        frame = new JFrame();
+        room = new FourthAngle(frame);
     }
 
     private void initGUI(){
