@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Door {
 
-    private ImageIcon img;
+   // private ImageIcon img;
 
     private JLabel doorImg;
     private int x;
@@ -14,6 +14,7 @@ public class Door {
     public Door(JLabel doorImg, int x, int y){
 
         this.doorImg = doorImg;
+      //  this.img =
         this.x = x;
         this.y = y;
 
