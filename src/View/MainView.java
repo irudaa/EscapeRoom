@@ -28,8 +28,8 @@ public class MainView extends JFrame {
         //First Window shown
 
         addFirstWindow();
-        addInventory();
-        addDoorRoom();
+     //   addInventory();
+      //  addDoorRoom();
 
         frame.add(mainPanel, BorderLayout.CENTER);
         frame.setVisible(true);
@@ -39,6 +39,17 @@ public class MainView extends JFrame {
 
     public void addFirstWindow(){
 
+        ImageIcon imgStart = new ImageIcon(new ImageIcon("src/Images/GA8bmPn.png").getImage().getScaledInstance(1200, 1000, Image.SCALE_DEFAULT));
+        ImageIcon switchOnOff = new ImageIcon(new ImageIcon("src/Images/5a2c682d8b79d9.6951852315128596935713.png").getImage().getScaledInstance(120, 80, Image.SCALE_DEFAULT));
+        JLabel blackSquare = new JLabel(imgStart);
+        blackSquare.setLayout(new FlowLayout());
+        JButton start = new JButton(switchOnOff);
+        start.setPreferredSize(new Dimension(120, 80));
+        //JPanel switchBro = new JPanel();
+        //switchBro.setPreferredSize(new Dimension(120, 80));
+        // switchBro.add(start);
+        blackSquare.add(start);
+        mainPanel.add(blackSquare, BorderLayout.CENTER);
 
     }
 
@@ -58,8 +69,8 @@ public class MainView extends JFrame {
     }
 
     public void addDoorRoom(){
-        ImageIcon doorImg = new ImageIcon(new ImageIcon("/home/hiba/ClassesM2/advUI/EscapeRoom/Images/door-146676_640 1.png").getImage().getScaledInstance(200, 400, Image.SCALE_DEFAULT));
-        ImageIcon roomImg = new ImageIcon(new ImageIcon("/home/hiba/ClassesM2/advUI/EscapeRoom/Images/Angle 1.png").getImage().getScaledInstance(800, 600, Image.SCALE_DEFAULT));
+        ImageIcon doorImg = new ImageIcon(new ImageIcon("src/Images/door-146676_640 1.png").getImage().getScaledInstance(200, 400, Image.SCALE_DEFAULT));
+        ImageIcon roomImg = new ImageIcon(new ImageIcon("src/Images/Angle 1.png").getImage().getScaledInstance(800, 600, Image.SCALE_DEFAULT));
         room = new FourthAngle(mainPanel, doorImg, roomImg);
         room.addRoom();
         // room.addDoor();
