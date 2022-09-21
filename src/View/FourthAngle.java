@@ -36,6 +36,7 @@ public class FourthAngle{
         panel.add(labelRoom, BorderLayout.CENTER);
     }
 
+
     private int getX(){
         return doorEnd.getX();
     }
