@@ -5,22 +5,35 @@ import java.awt.*;
 
 public class FourthAngle{
 
-    private JFrame frame;
+    private JPanel panel;
     private Door doorEnd;
 
-    private ImageIcon img;
-    private JLabel doorImg;
+    private ImageIcon imgDoor;
+    private ImageIcon imgRoom;
+    private JLabel labelDoor;
+    private JLabel labelRoom;
 
-    public FourthAngle(JFrame frame){
-        this.frame = frame;
-        img = new ImageIcon(new ImageIcon("src/Images/aec41238a8d1302599ef086d0ce9d388.jpg").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
-        JLabel doorImg = new JLabel(img);
-        doorEnd = new Door(doorImg, 5, 6);
-        frame.add(doorEnd.getDoorImg());
+    public FourthAngle(JPanel panel, ImageIcon imgDoor, ImageIcon imgRoom){
+        this.panel = panel;
+        this.imgDoor = imgDoor;
+        labelDoor = new JLabel(imgDoor);
+        doorEnd = new Door(labelDoor);
+        this.imgRoom = imgRoom;
+        labelRoom = new JLabel(imgRoom);
+
+
     }
 
-    private Door getDoor(){
+    public Door getDoor(){
         return doorEnd;
+    }
+
+    public void addDoor(){
+        panel.add(doorEnd.getDoorImg(), BorderLayout.CENTER);
+    }
+
+    public void addRoom(){
+        panel.add(labelRoom, BorderLayout.CENTER);
     }
 
     private int getX(){
@@ -31,8 +44,8 @@ public class FourthAngle{
         return doorEnd.getY();
     }
 
-    private JFrame getFrame(){
-        return frame;
+    public JPanel panel(){
+        return panel;
     }
 
 

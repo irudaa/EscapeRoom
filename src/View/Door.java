@@ -1,6 +1,7 @@
 package View;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Door {
 
@@ -11,14 +12,13 @@ public class Door {
     private int y;
     private boolean isOpened = false;
 
-    public Door(JLabel doorImg, int x, int y){
+    public Door(JLabel doorImg){//, int x, int y){
 
         this.doorImg = doorImg;
-        this.x = x;
-        this.y = y;
+       // this.x = ;
+       // this.y = y;
 
     }
-
     public int getX(){
         return x;
     }
@@ -27,8 +27,14 @@ public class Door {
         return y;
     }
 
+
+
     public JLabel getDoorImg(){
         return doorImg;
+    }
+
+    public void setDoorImg(ImageIcon img){
+        this.img = img;
     }
 
     public boolean isOpened(){
