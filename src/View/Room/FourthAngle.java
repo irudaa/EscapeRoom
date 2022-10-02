@@ -1,4 +1,6 @@
-package View;
+package View.Room;
+
+import View.Door.Door;
 
 import javax.swing.*;
 import java.awt.*;
