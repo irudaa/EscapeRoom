@@ -1,6 +1,7 @@
 package View.Main;
 
-import View.Room.FourthAngle;
+import View.Inventory.Inventory;
+import View.Rooms.AngleView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +9,7 @@ import java.awt.*;
 public class MainView extends JFrame {
 
     private JFrame frame = new JFrame();
-    private FourthAngle room;
+    private AngleView room;
 
     protected JButton start;
 
@@ -16,11 +17,11 @@ public class MainView extends JFrame {
 
     private boolean isActive = false;
 
-    protected JPanel windowPanel;
+    protected JPanel windowPanel, inventoryPanel;
 
     protected JPanel fourthAnglePanel = new JPanel();
 
-    private JLayeredPane lpane;
+    private JLayeredPane lpane, roomPane;
 
     public MainView(){
         super("Let me Out!");
@@ -37,16 +38,14 @@ public class MainView extends JFrame {
         frame.setBounds(600,400,600,400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         lpane = new JLayeredPane();
-       // frame.setLayout(new BorderLayout());
         frame.add(lpane);
         lpane.setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
 
         //First Window shown
-        addInventory();
+       // addInventory();
         addDoorRoom();
         addFirstWindow();
 
-      //frame.add(mainPanel, BorderLayout.CENTER);
         frame.setVisible(true);
         frame.pack();
     }
@@ -73,32 +72,18 @@ public class MainView extends JFrame {
 
     public void addInventory(){
         //Create inventory
-        JPanel inventory = new JPanel();
-        inventory.setPreferredSize(new Dimension(100, 600));
-        Box inv = Box.createVerticalBox();
-
-        //First Button
-        Button item1 = new Button("button1");
-        item1.setPreferredSize(new Dimension(100, 100));
-        inv.add(item1);
-        inventory.add(inv);
-        inventory.setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
-
-        fourthAnglePanel.add(inventory, BorderLayout.WEST);
-        lpane.add(fourthAnglePanel, new Integer(1), 0);
+        inventoryPanel = new JPanel();
+        Inventory inventory = new Inventory(inventoryPanel);
+        fourthAnglePanel.add(inventoryPanel, BorderLayout.WEST);
+        lpane.add(inventoryPanel, new Integer(1), 0);
     }
 
     public void addDoorRoom(){
-        ImageIcon doorImg = new ImageIcon(new ImageIcon("src/Images/door-146676_640 1.png").getImage().getScaledInstance(400,800, Image.SCALE_DEFAULT));
-        ImageIcon roomImg = new ImageIcon(new ImageIcon("src/Images/Angle 1.png").getImage().getScaledInstance(frame.getPreferredSize().width, frame.getPreferredSize().height, Image.SCALE_DEFAULT));
-        JPanel angle = new JPanel();
-        angle.setLayout(new FlowLayout());
-        room = new FourthAngle(angle, doorImg, roomImg);
-        room.addRoom();
-        room.addDoor();
-        angle.setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
-        fourthAnglePanel.add(angle, BorderLayout.CENTER);
-        lpane.add(angle, new Integer(0), 0);
+        roomPane = new JLayeredPane();
+        room = new AngleView(roomPane, frame);
+        roomPane.setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
+        //fourthAnglePanel.add(roomPane, BorderLayout.CENTER);
+        lpane.add(room.pane(), new Integer(0), 0);
     }
 
 

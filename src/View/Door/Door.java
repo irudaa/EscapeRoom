@@ -41,11 +41,10 @@ public class Door {
         return isOpened;
     }
 
-    public boolean setIsOpened(boolean set){
+    public void setIsOpened(boolean set){
         if(isOpened != set){
             isOpened = set;
         }
-        return isOpened;
     }
 
 }
