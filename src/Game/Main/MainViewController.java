@@ -1,4 +1,4 @@
-package View.Main;
+package Game.Main;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -1,7 +1,7 @@
-package View.Main;
+package Game.Main;
 
-import View.Inventory.Inventory;
-import View.Rooms.AngleView;
+import Game.Inventory.Inventory;
+import Game.Rooms.Angle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +9,7 @@ import java.awt.*;
 public class MainView extends JFrame {
 
     private JFrame frame = new JFrame();
-    private AngleView room;
+    private Angle room;
 
     protected JButton start;
 
@@ -42,7 +42,7 @@ public class MainView extends JFrame {
         lpane.setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
 
         //First Window shown
-       // addInventory();
+        addInventory();
         addDoorRoom();
         addFirstWindow();
 
@@ -66,7 +66,7 @@ public class MainView extends JFrame {
         blackSquare.add(start);
         windowPanel.add(blackSquare);
         windowPanel.setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
-        lpane.add(windowPanel, new Integer(2), 2);
+        lpane.add(windowPanel, new Integer(2));
 
     }
 
@@ -74,16 +74,19 @@ public class MainView extends JFrame {
         //Create inventory
         inventoryPanel = new JPanel();
         Inventory inventory = new Inventory(inventoryPanel);
-        fourthAnglePanel.add(inventoryPanel, BorderLayout.WEST);
-        lpane.add(inventoryPanel, new Integer(1), 0);
+        inventoryPanel.setBounds(1,2, 200,1200);
+        inventoryPanel.setOpaque(false);
+        lpane.add(inventoryPanel, new Integer(1));
     }
 
     public void addDoorRoom(){
         roomPane = new JLayeredPane();
-        room = new AngleView(roomPane, frame);
-        roomPane.setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
-        //fourthAnglePanel.add(roomPane, BorderLayout.CENTER);
-        lpane.add(room.pane(), new Integer(0), 0);
+        room = new Angle(roomPane, frame);
+
+        room.getPane().setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
+        room.getPane().setOpaque(false);
+        lpane.add(room.getPane(), new Integer(0));
+
     }
 
 

@@ -1,4 +1,4 @@
-package View.Rooms;
+package Game.Rooms;
 
 public class AngleModel {
 }

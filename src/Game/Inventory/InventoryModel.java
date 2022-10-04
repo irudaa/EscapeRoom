@@ -1,11 +1,11 @@
-package View.Inventory;
+package Game.Inventory;
 
 public class InventoryModel {
 
     public InventoryModel(){
 
     }
-    public void showInv() {
+    public void showItem() {
 
     }
 }
