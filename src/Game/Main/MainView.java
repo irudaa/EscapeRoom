@@ -42,9 +42,9 @@ public class MainView extends JFrame {
         lpane.setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
 
         //First Window shown
-        addInventory();
         addDoorRoom();
         addFirstWindow();
+        addInventory();
 
         frame.setVisible(true);
         frame.pack();
@@ -54,7 +54,7 @@ public class MainView extends JFrame {
     public void addFirstWindow(){
 
         ImageIcon imgStart = new ImageIcon(new ImageIcon("src/Images/GA8bmPn.png").getImage().getScaledInstance(frame.getPreferredSize().width, frame.getPreferredSize().height, Image.SCALE_DEFAULT));
-        ImageIcon switchOnOff = new ImageIcon(new ImageIcon("src/Images/5a2c682d8b79d9.6951852315128596935713.png").getImage().getScaledInstance(280, 180, Image.SCALE_DEFAULT));
+        ImageIcon switchOnOff = new ImageIcon(new ImageIcon("src/Images/5a2c682d8b79d9.6951852315128596935713.png").getImage().getScaledInstance(200, 120, Image.SCALE_DEFAULT));
         blackSquare = new JLabel(imgStart);
         blackSquare.setLayout(new FlowLayout());
         start = new JButton(switchOnOff);
@@ -63,6 +63,15 @@ public class MainView extends JFrame {
         start.setContentAreaFilled(false);
         windowPanel = new JPanel();
         windowPanel.setLayout(new FlowLayout());
+        JTextArea story = new JTextArea(24, 80);
+        story.setBackground(Color.black);
+        story.setEditable(false);
+        story.append("\nHe wakes up to find himself in a bizarre room. He doesn't remember who he is nor what he is doing there.");
+        story.append("\nThe room smells funny and old, it doesn’t seem to be lived in. ");
+        story.append( "\nHe wonders where he is, who he is, why he is here. He wonders if they will ever let him out.");
+        story.setForeground(Color.white);
+        story.setFont(new Font(Font.MONOSPACED, Font.BOLD, 16));
+        blackSquare.add(story);
         blackSquare.add(start);
         windowPanel.add(blackSquare);
         windowPanel.setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
@@ -73,8 +82,9 @@ public class MainView extends JFrame {
     public void addInventory(){
         //Create inventory
         inventoryPanel = new JPanel();
+        inventoryPanel.setLayout(new FlowLayout());
         Inventory inventory = new Inventory(inventoryPanel);
-        inventoryPanel.setBounds(1,2, 200,1200);
+        inventoryPanel.setBounds(1,2, 300,1000);
         inventoryPanel.setOpaque(false);
         lpane.add(inventoryPanel, new Integer(1));
     }

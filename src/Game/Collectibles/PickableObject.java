@@ -1,10 +1,11 @@
 package Game.Collectibles;
 
 import javax.swing.*;
-import javax.swing.text.Position;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class Object {
+public class PickableObject extends JComponent {
     private boolean isFound;
 
     private Dimension dim;
@@ -12,8 +13,7 @@ public class Object {
     private Point pos;
     private int x, y;
 
-    public Object(Dimension dim, Point pos){
-
+    public PickableObject(Dimension dim, Point pos){
         this.dim = dim;
         this.pos = pos;
     }
@@ -23,5 +23,6 @@ public class Object {
 
     public Point getPos(){ return pos; }
     public boolean isFound(){ return isFound; }
-    public void setFound(boolean bool){ isFound = bool; }
+    public void setFound(boolean bool){ isFound = bool;}
+
 }

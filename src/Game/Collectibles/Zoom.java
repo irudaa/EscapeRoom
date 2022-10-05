@@ -3,7 +3,7 @@ package Game.Collectibles;
 import javax.swing.*;
 import java.awt.*;
 
-public class Zoom extends Object{
+public class Zoom extends PickableObject {
 
 
     private Dimension dim;
@@ -20,6 +20,7 @@ public class Zoom extends Object{
         this.pos = pos;
         imageIcon = new ImageIcon();
         label = new JLabel(imageIcon);
+        super.setFound(false);
     }
     public ImageIcon getImg(){ return imageIcon; }
 
