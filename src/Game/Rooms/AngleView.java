@@ -2,9 +2,11 @@ package Game.Rooms;
 
 import Game.Collectibles.Key;
 import Game.InteractiveObj.Door;
+import Game.InteractiveObj.Mirror;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public class AngleView {
 
@@ -71,15 +73,16 @@ public class AngleView {
         key.returnLabel().setBounds((int)key.getPos().getX(), (int)key.getPos().getY(), (int) key.getSize().getWidth(), (int)key.getSize().getHeight());
         key.returnLabel().setOpaque(false);
 
+        //Mirror
+        Mirror mirror = new Mirror();
 
         //setup room
-        room.add(labelRoom, new Integer(0));
-        room.add(doorEnd.returnLabel(), new Integer(1));
-        room.add(key.returnLabel(), new Integer(2));
+        room.add(labelRoom, 0);
+        room.add(doorEnd.returnLabel(), 1);
+        room.add(key.returnLabel(), 2);
+
+        room.add(mirror, 3);
 
 
     }
-
-
-
 }
