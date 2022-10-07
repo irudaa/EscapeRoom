@@ -1,40 +1,53 @@
 package Game.Inventory;
 
+import Game.Collectibles.Key;
 import Game.Collectibles.PickableObject;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionAdapter;
+import java.awt.event.*;
 import java.util.ArrayList;
 
-public class Inventory extends JComponent{
+public class Inventory extends JComponent implements MouseListener, MouseMotionListener{
+
+    private int mouseX=0,mouseY=0;
+
     private InventoryView view;
     private InventoryModel model;
+
+    private Point startPoint;
+
+    private JFrame frame;
 
     private boolean isActivated = false;
 
     private JPanel panel;
-    int x_pressed = 0;
-    int y_pressed = 0;
 
+    private Image img;
 
     private ArrayList<PickableObject> isAquired = new ArrayList<>();
-    public Inventory(JPanel viewPanel){
-       view = new InventoryView(viewPanel);
+    public Inventory(JPanel viewPanel, JFrame frame){
+       view = new InventoryView(viewPanel, this);
        this.panel = viewPanel;
        model = new InventoryModel();
+       this.frame = frame;
        initInv();
        dragKey();
     }
 
     public boolean isActivated(){ return isActivated;}
 
+    public InventoryView getView(){ return view; }
+
     public ArrayList<PickableObject> getIsAquired(){ return isAquired; }
 
-    public void addIsAquired(PickableObject obj){ isAquired.add(obj); }
+    public void addObj(PickableObject obj){
+        if(obj != null){
+            isAquired.add(obj);
+        }
+    }
+
+public Inventory getInventory(){ return this; }
 
     public void setActivated(boolean act){ isActivated = act; }
 
@@ -44,17 +57,33 @@ public class Inventory extends JComponent{
         }
     }
 
-    public void dragKey(){
+    public void dragKey() {
+        addMouseListener(this);
+        addMouseMotionListener(this);
+    }
 
-        view.item1.addMouseMotionListener(new MouseMotionAdapter(){
-            @Override
-            public void mouseDragged(MouseEvent e){
-                //and when the Jlabel is dragged
-                x_pressed = e.getX();
-                y_pressed = e.getY();
-                view.item1.setBounds(x_pressed, y_pressed, 100, 100);            }
-        });
 
+    public void mouseClicked( MouseEvent e ){}
+    public void mousePressed( MouseEvent e ){    }
+    public void mouseReleased( MouseEvent e ){}
+    public void mouseEntered( MouseEvent e ){}
+    public void mouseExited( MouseEvent e ){}
+    public void mouseDragged( MouseEvent e ){}
+
+    public void mouseMoved( MouseEvent e ){
+        repaint();
+        mouseX=e.getX();
+        mouseY=e.getY();
+        repaint();
+    }
+
+
+    public void paintComponent (Graphics g)
+    {
+        super.paintComponent(g);
+        g.drawImage(view.getKey().getImg().getImage(), mouseX,mouseY,
+                view.getKey().getImg().getImage().getWidth(this), view.getKey().getImg().getImage().getHeight(this),this);
     }
 
 }
+

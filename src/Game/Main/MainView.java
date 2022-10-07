@@ -23,9 +23,12 @@ public class MainView extends JFrame {
 
     private JLayeredPane lpane, roomPane;
 
+    private Inventory inventory;
+
     public MainView(){
         super("Let me Out!");
         frame = new JFrame();
+        frame.setLocationRelativeTo(null);
         fourthAnglePanel = new JPanel();
         initGUI();
     }
@@ -44,7 +47,7 @@ public class MainView extends JFrame {
         //First Window shown
         addDoorRoom();
         addFirstWindow();
-        addInventory();
+        //addInventory();
 
         frame.setVisible(true);
         frame.pack();
@@ -82,8 +85,8 @@ public class MainView extends JFrame {
     public void addInventory(){
         //Create inventory
         inventoryPanel = new JPanel();
-        inventoryPanel.setLayout(new FlowLayout());
-        Inventory inventory = new Inventory(inventoryPanel);
+        inventoryPanel.setLayout(new GridLayout(2, 1));
+        inventory = new Inventory(inventoryPanel, frame);
         inventoryPanel.setBounds(1,2, 300,1000);
         inventoryPanel.setOpaque(false);
         lpane.add(inventoryPanel, new Integer(1));
@@ -91,8 +94,8 @@ public class MainView extends JFrame {
 
     public void addDoorRoom(){
         roomPane = new JLayeredPane();
-        room = new Angle(roomPane, frame);
-
+        addInventory();
+        room = new Angle(roomPane, frame, inventory.getView());
         room.getPane().setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
         room.getPane().setOpaque(false);
         lpane.add(room.getPane(), new Integer(0));

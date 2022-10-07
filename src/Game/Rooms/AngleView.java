@@ -1,7 +1,11 @@
 package Game.Rooms;
 
+import Game.Collectibles.Flashlight;
 import Game.Collectibles.Key;
+import Game.Collectibles.Lighter;
+import Game.Collectibles.Zoom;
 import Game.InteractiveObj.Door;
+import Game.Inventory.InventoryView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,15 +23,19 @@ public class AngleView {
     private JLayeredPane room;
 
     private JFrame frame;
+
+    private InventoryView inv;
+
     /*
     * public AngleView(JPanel panel, Frame frame){
     *          this.panel = panel;
 
      * }
     * */
-    public AngleView(JLayeredPane room, JFrame frame){
+    public AngleView(JLayeredPane room, JFrame frame, InventoryView inv){
         this.room = room;
         this.frame = frame;
+        this.inv = inv;
         setRoom();
 
 
@@ -67,15 +75,36 @@ public class AngleView {
         doorEnd.returnLabel().setOpaque(false);
 
         //Create Object: Key
-        Key key = new Key(new Dimension(50, 20), new Point(778, 900));
-        key.returnLabel().setBounds((int)key.getPos().getX(), (int)key.getPos().getY(), (int) key.getSize().getWidth(), (int)key.getSize().getHeight());
-        key.returnLabel().setOpaque(false);
+        Key key = new Key(new Dimension(50, 20), new Point(778, 900), inv);
+        key.isClicked();
+        key.getLabel().setBounds((int)key.getPos().getX(), (int)key.getPos().getY(), (int) key.getSize().getWidth(), (int)key.getSize().getHeight());
+        key.getLabel().setOpaque(false);
+
+        //Create Object: Lighter
+        Lighter lighter = new Lighter(new Dimension(50, 20), new Point(200, 900), inv);
+        lighter.isClicked();
+        lighter.getLabel().setBounds((int)lighter.getPos().getX(), (int)lighter.getPos().getY(), (int) lighter.getSize().getWidth(), (int)lighter.getSize().getHeight());
+        lighter.getLabel().setOpaque(false);
+
+        //Create Object: Zoom
+        Zoom zoom = new Zoom(new Dimension(50, 20), new Point(200, 500), inv);
+        zoom.isClicked();
+        zoom.getLabel().setBounds((int)zoom.getPos().getX(), (int)zoom.getPos().getY(), (int) lighter.getSize().getWidth(), (int)zoom.getSize().getHeight());
+        zoom.getLabel().setOpaque(false);
+
+        //Create Object: Flashlight
+        Flashlight flashlight = new Flashlight(new Dimension(50, 20), new Point(400, 1000), inv);
+        flashlight.isClicked();
+        flashlight.getLabel().setBounds((int)flashlight.getPos().getX(), (int)flashlight.getPos().getY(), (int)flashlight.getSize().getWidth(), (int)zoom.getSize().getHeight());
+        flashlight.getLabel().setOpaque(false);
 
 
         //setup room
         room.add(labelRoom, new Integer(0));
         room.add(doorEnd.returnLabel(), new Integer(1));
-        room.add(key.returnLabel(), new Integer(2));
+        room.add(key.getLabel(), new Integer(2));
+        room.add(lighter.getLabel(), new Integer(3));
+        room.add(zoom.getLabel(), new Integer(4));
 
 
     }
