@@ -26,12 +26,6 @@ public class AngleView {
 
     private InventoryView inv;
 
-    /*
-    * public AngleView(JPanel panel, Frame frame){
-    *          this.panel = panel;
-
-     * }
-    * */
     public AngleView(JLayeredPane room, JFrame frame, InventoryView inv){
         this.room = room;
         this.frame = frame;
