@@ -31,6 +31,10 @@ public class Key extends PickableObject {
 
     }
 
+    public Dimension getDim(){ return dim; }
+
+    public Point getPos(){ return pos; }
+
     public ImageIcon getImg(){ return imageIcon; }
 
     public JLabel getLabel(){ return label; }

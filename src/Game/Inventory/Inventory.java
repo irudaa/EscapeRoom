@@ -39,6 +39,10 @@ public class Inventory extends JComponent implements MouseListener, MouseMotionL
 
     public InventoryView getView(){ return view; }
 
+    public InventoryModel getModel(){
+        return model;
+    }
+
     public ArrayList<PickableObject> getIsAquired(){ return isAquired; }
 
     public void addObj(PickableObject obj){
@@ -58,8 +62,8 @@ public Inventory getInventory(){ return this; }
     }
 
     public void dragKey() {
-        addMouseListener(this);
-        addMouseMotionListener(this);
+        frame.addMouseListener(this);
+        frame.addMouseMotionListener(this);
     }
 
 
@@ -70,6 +74,7 @@ public Inventory getInventory(){ return this; }
     public void mouseExited( MouseEvent e ){}
     public void mouseDragged( MouseEvent e ){}
 
+    @Override
     public void mouseMoved( MouseEvent e ){
         repaint();
         mouseX=e.getX();

@@ -21,9 +21,13 @@ public class MainView extends JFrame {
 
     protected JPanel fourthAnglePanel = new JPanel();
 
-    private JLayeredPane lpane, roomPane;
+    private JLayeredPane lpane;
+    private JPanel roomPanel;
 
     private Inventory inventory;
+
+    //private JButton next;
+    //private JButton previous;
 
     public MainView(){
         super("Let me Out!");
@@ -39,15 +43,17 @@ public class MainView extends JFrame {
         frame.setMinimumSize(new Dimension(400, 400));
         frame.setMaximumSize(new Dimension(1400, 1200));
         frame.setBounds(600,400,600,400);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         lpane = new JLayeredPane();
         frame.add(lpane);
         lpane.setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
 
         //First Window shown
-        addDoorRoom();
+        addRoom();
         addFirstWindow();
         //addInventory();
+        //addButtons();
 
         frame.setVisible(true);
         frame.pack();
@@ -78,7 +84,7 @@ public class MainView extends JFrame {
         blackSquare.add(start);
         windowPanel.add(blackSquare);
         windowPanel.setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
-        lpane.add(windowPanel, new Integer(2));
+        lpane.add(windowPanel, new Integer(3));
 
     }
 
@@ -89,18 +95,29 @@ public class MainView extends JFrame {
         inventory = new Inventory(inventoryPanel, frame);
         inventoryPanel.setBounds(1,2, 300,1000);
         inventoryPanel.setOpaque(false);
-        lpane.add(inventoryPanel, new Integer(1));
+        lpane.add(inventoryPanel, new Integer(2));
     }
 
-    public void addDoorRoom(){
-        roomPane = new JLayeredPane();
+
+    public void addRoom(){
+        CardLayout cardLayout = new CardLayout();
+        roomPanel = new JPanel(cardLayout);
         addInventory();
-        room = new Angle(roomPane, frame, inventory.getView());
+        room = new Angle(roomPanel, frame, inventory.getView());
+        room.getView().initialiseAngles();
         room.getPane().setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
         room.getPane().setOpaque(false);
+        room.getView().addButtons();
+        lpane.add(room.getView().getNext(), new Integer(1));
+        lpane.add(room.getView().getPrevious(), new Integer(1));
         lpane.add(room.getPane(), new Integer(0));
 
+
+
+
     }
+
+
 
 
 }

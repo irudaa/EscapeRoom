@@ -24,7 +24,7 @@ public class Flashlight extends PickableObject {
         super(dim, pos);
         this.dim = dim;
         this.pos = pos;
-        this.imageIcon = new ImageIcon();
+        imageIcon = new ImageIcon(new ImageIcon("src/Images/light-310703_640 1.png").getImage().getScaledInstance((int) dim.getWidth(), (int) dim.getHeight(), Image.SCALE_DEFAULT));
         label = new JLabel(imageIcon);
         super.setFound(false);
         this.inventory = inventory;
