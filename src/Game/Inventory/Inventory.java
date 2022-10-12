@@ -72,14 +72,16 @@ public Inventory getInventory(){ return this; }
     public void mouseReleased( MouseEvent e ){}
     public void mouseEntered( MouseEvent e ){}
     public void mouseExited( MouseEvent e ){}
-    public void mouseDragged( MouseEvent e ){}
-
-    @Override
-    public void mouseMoved( MouseEvent e ){
+    public void mouseDragged( MouseEvent e ){
         repaint();
         mouseX=e.getX();
         mouseY=e.getY();
         repaint();
+    }
+
+    @Override
+    public void mouseMoved( MouseEvent e ){
+
     }
 
 

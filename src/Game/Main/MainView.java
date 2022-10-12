@@ -5,10 +5,12 @@ import Game.Rooms.Angle;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainView extends JFrame {
 
-    private JFrame frame = new JFrame();
+    private JFrame frame;
     private Angle room;
 
     protected JButton start;
@@ -19,41 +21,42 @@ public class MainView extends JFrame {
 
     protected JPanel windowPanel, inventoryPanel;
 
-    protected JPanel fourthAnglePanel = new JPanel();
-
     private JLayeredPane lpane;
     private JPanel roomPanel;
 
     private Inventory inventory;
 
+    private int width;
+    private int height;
+
     //private JButton next;
     //private JButton previous;
 
+    private CardLayout cardLayout;
     public MainView(){
         super("Let me Out!");
         frame = new JFrame();
         frame.setLocationRelativeTo(null);
-        fourthAnglePanel = new JPanel();
+        width = 1000;
+        height = 800;
         initGUI();
     }
 
     private void initGUI(){
         //setting main qualities in place
-        frame.setPreferredSize(new Dimension(1200, 1000));
-        frame.setMinimumSize(new Dimension(400, 400));
-        frame.setMaximumSize(new Dimension(1400, 1200));
-        frame.setBounds(600,400,600,400);
+        frame.setPreferredSize(new Dimension(width, height));
+        frame.setMinimumSize(new Dimension(width, height));
+        frame.setMaximumSize(new Dimension(width, height));
+        //frame.setBounds(600,400,600,400);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         lpane = new JLayeredPane();
         frame.add(lpane);
-        lpane.setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
-
+       // lpane.setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
         //First Window shown
         addRoom();
         addFirstWindow();
-        //addInventory();
-        //addButtons();
+        activateButtons();
 
         frame.setVisible(true);
         frame.pack();
@@ -100,22 +103,56 @@ public class MainView extends JFrame {
 
 
     public void addRoom(){
-        CardLayout cardLayout = new CardLayout();
-        roomPanel = new JPanel(cardLayout);
+        cardLayout = new CardLayout();
+        roomPanel = new JPanel();
+        roomPanel.setLayout(cardLayout);
+        roomPanel.setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
+        roomPanel.setOpaque(false);
+
         addInventory();
-        room = new Angle(roomPanel, frame, inventory.getView());
-        room.getView().initialiseAngles();
-        room.getPane().setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
-        room.getPane().setOpaque(false);
-        room.getView().addButtons();
+        room = new Angle(frame, inventory.getView());
+        JPanel p = room.getFirstAngle().getPanel();
+        JPanel p2 = room.getSecondAngle().getPanel();
+        JPanel p3 = room.getThirdAngle().getPanel();
+
+        roomPanel.add(p, "1");
+        roomPanel.add(p2, "2");
+        roomPanel.add(p3, "3");
+        //room.getFirstAngle().setName("firstPanel");
+       // room.getSecondAngle().setName("secondPanel");
+        cardLayout.show(roomPanel, "1");
+        roomPanel.revalidate();
+
         lpane.add(room.getView().getNext(), new Integer(1));
         lpane.add(room.getView().getPrevious(), new Integer(1));
-        lpane.add(room.getPane(), new Integer(0));
-
-
-
+        lpane.add(roomPanel, new Integer(0));
 
     }
+
+    public void activateButtons(){
+        room.getView().getNext().addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                System.out.println("ent");
+                cardLayout.next(roomPanel);
+                roomPanel.revalidate();
+            }
+        });
+
+        room.getView().getPrevious().addActionListener(new ActionListener() {
+
+          //  CardLayout cl =  (CardLayout)(roomPanel.getLayout());
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                System.out.println("enttt");
+                cardLayout.previous(roomPanel);
+                roomPanel.revalidate();
+            }
+        });
+    }
+
+    public Angle getRoom(){ return room; }
 
 
 

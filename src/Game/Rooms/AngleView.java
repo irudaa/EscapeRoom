@@ -22,6 +22,8 @@ public class AngleView extends JComponent{
 
     private RoomOne firstAngle;
 
+    private RoomTwo secondAngle;
+
     private Key key;
 
     private Lighter lighter;
@@ -33,32 +35,41 @@ public class AngleView extends JComponent{
     private JButton next, previous;
 
 
-    public AngleView(JPanel room, JFrame frame, InventoryView inv){
-
-        this.room = room;
+    public AngleView(JFrame frame, InventoryView inv){
+      //  this.room = room;
         this.frame = frame;
         this.inv = inv;
-        key = new Key(new Dimension(50, 20), new Point(778, 900), inv);
-        lighter = new Lighter(new Dimension(50, 20), new Point(200, 900), inv);
-        flashlight = new Flashlight(new Dimension(50, 20), new Point(400, 100), inv);
-        zoom = new Zoom(new Dimension(50, 20), new Point(200, 500), inv);
+        addButtons();
 
     }
 
-    public void initialiseAngles(){
-        firstAngle = new RoomOne(room, frame, inv, key, zoom, lighter, flashlight);
+    public RoomOne startRoomOne(){
+        RoomOne one = new RoomOne(frame, inv);
+        return one;
     }
+
+    public RoomTwo startRoomTwo(){
+        RoomTwo two = new RoomTwo(frame, inv);
+        return two;
+    }
+
+    public RoomThree startRoomThree(){
+        RoomThree three = new RoomThree(frame, inv);
+        return three;
+    }
+
+
 
     public void addButtons(){
 
         ImageIcon imageIcon = new ImageIcon(new ImageIcon("src/Images/start-button.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
         next = new JButton(imageIcon);
-        next.setBounds(1130,500, 50,50);
+        next.setBounds(930,400, 50,50);
         next.setOpaque(false);
 
         ImageIcon imageIcon2 = new ImageIcon(new ImageIcon("src/Images/start-button2.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
         previous = new JButton(imageIcon2);
-        previous.setBounds(10,500, 50,50);
+        previous.setBounds(10,400, 50,50);
         previous.setOpaque(false);
 
     }
