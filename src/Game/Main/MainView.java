@@ -49,6 +49,7 @@ public class MainView extends JFrame {
         frame.setMaximumSize(new Dimension(width, height));
         //frame.setBounds(600,400,600,400);
         frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         lpane = new JLayeredPane();
         frame.add(lpane);
@@ -78,16 +79,17 @@ public class MainView extends JFrame {
         JTextArea story = new JTextArea(24, 80);
         story.setBackground(Color.black);
         story.setEditable(false);
-        story.append("\nHe wakes up to find himself in a bizarre room. He doesn't remember who he is nor what he is doing there.");
-        story.append("\nThe room smells funny and old, it doesn’t seem to be lived in. ");
-        story.append( "\nHe wonders where he is, who he is, why he is here. He wonders if they will ever let him out.");
+        story.append("\n He wakes up to find himself in a bizarre room. He doesn't remember who he is nor what he");
+        story.append("\n is doing there. The room smells funny and old, it doesn’t seem to be lived in.");
+        story.append( "\n He wonders where he is, who he is, why he is here. He wonders if they");
+        story.append( "\n will ever let him out.");
         story.setForeground(Color.white);
         story.setFont(new Font(Font.MONOSPACED, Font.BOLD, 16));
         blackSquare.add(story);
         blackSquare.add(start);
         windowPanel.add(blackSquare);
         windowPanel.setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
-        lpane.add(windowPanel, new Integer(3));
+        lpane.add(windowPanel, new Integer(4));
 
     }
 
@@ -95,10 +97,10 @@ public class MainView extends JFrame {
         //Create inventory
         inventoryPanel = new JPanel();
         inventoryPanel.setLayout(new GridLayout(2, 1));
-        inventory = new Inventory(inventoryPanel, frame);
+        inventory = new Inventory(inventoryPanel, frame, this);
         inventoryPanel.setBounds(1,2, 300,1000);
         inventoryPanel.setOpaque(false);
-        lpane.add(inventoryPanel, new Integer(2));
+        lpane.add(inventoryPanel, new Integer(3));
     }
 
 
@@ -114,12 +116,13 @@ public class MainView extends JFrame {
         JPanel p = room.getFirstAngle().getPanel();
         JPanel p2 = room.getSecondAngle().getPanel();
         JPanel p3 = room.getThirdAngle().getPanel();
+        JPanel p4 = room.getFourthAngle().getPanel();
 
         roomPanel.add(p, "1");
         roomPanel.add(p2, "2");
         roomPanel.add(p3, "3");
-        //room.getFirstAngle().setName("firstPanel");
-       // room.getSecondAngle().setName("secondPanel");
+        roomPanel.add(p4, "4");
+
         cardLayout.show(roomPanel, "1");
         roomPanel.revalidate();
 
@@ -142,7 +145,6 @@ public class MainView extends JFrame {
 
         room.getView().getPrevious().addActionListener(new ActionListener() {
 
-          //  CardLayout cl =  (CardLayout)(roomPanel.getLayout());
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 System.out.println("enttt");
@@ -152,7 +154,9 @@ public class MainView extends JFrame {
         });
     }
 
-    public Angle getRoom(){ return room; }
+    public Angle getAngleClass(){ return room; }
+
+    public JLayeredPane getPane(){ return lpane; }
 
 
 

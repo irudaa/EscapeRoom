@@ -2,6 +2,7 @@ package Game.Rooms;
 
 import Game.Collectibles.Flashlight;
 import Game.Collectibles.Lighter;
+import Game.InteractiveObj.Mirror.Mirror;
 import Game.Inventory.InventoryView;
 
 import javax.swing.*;
@@ -16,8 +17,8 @@ public class RoomThree {
     private JFrame frame;
 
     private Lighter lighter;
-    private Flashlight flashlight;
     private InventoryView inv;
+    private Mirror mirror;
     public RoomThree(JFrame frame, InventoryView inv) {
         CardLayout cardLayout = new CardLayout();
         panel3 = new JPanel(cardLayout);
@@ -25,8 +26,7 @@ public class RoomThree {
         panel3.setOpaque(false);
         this.frame = frame;
         this.inv = inv;
-        lighter = new Lighter(new Dimension(50, 20), new Point(200, 900), inv);
-        flashlight = new Flashlight(new Dimension(50, 20), new Point(400, 100), inv);
+        lighter = new Lighter(new Dimension(50, 20), new Point(200, 400), inv);
         room = new JLayeredPane();
         setRoomThree();
     }
@@ -46,21 +46,25 @@ public class RoomThree {
         lighter.getLabel().setBounds((int)lighter.getPos().getX(), (int)lighter.getPos().getY(), (int) lighter.getSize().getWidth(), (int)lighter.getSize().getHeight());
         lighter.getLabel().setOpaque(false);
 
-        //Create Object: Flashlight
-        flashlight.isClicked();
-        flashlight.getLabel().setBounds((int)flashlight.getPos().getX(), (int)flashlight.getPos().getY(), (int)flashlight.getSize().getWidth(), (int)flashlight.getSize().getHeight());
-        flashlight.getLabel().setOpaque(false);
+
+        //Create Mirror
+        mirror = new Mirror();
 
         //setup room
         room.add(labelRoom, new Integer(0));
         room.add(lighter.getLabel(), new Integer(2));
-        room.add(flashlight.getLabel(), new Integer(4));
+        room.add(mirror.getMirrorLabel(), new Integer(4));
+
 
         panel3.add(room);
 
     }
 
     public JLayeredPane getRoom(){ return room; }
+
+    public Mirror getMirror(){
+        return mirror;
+    }
 
     public JPanel getPanel(){return panel3;}
 

@@ -58,6 +58,11 @@ public class AngleView extends JComponent{
         return three;
     }
 
+    public RoomFour startRoomFour(){
+        RoomFour four = new RoomFour(frame, inv);
+        return four;
+    }
+
 
 
     public void addButtons(){

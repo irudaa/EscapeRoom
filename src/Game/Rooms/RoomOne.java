@@ -5,6 +5,7 @@ import Game.Collectibles.Key;
 import Game.Collectibles.Lighter;
 import Game.Collectibles.Zoom;
 import Game.InteractiveObj.Door;
+import Game.InteractiveObj.Drawer;
 import Game.Inventory.InventoryView;
 
 import javax.swing.*;
@@ -20,6 +21,7 @@ public class RoomOne{
     private JLabel labelDoor;
     private JLabel labelRoom;
 
+    private Drawer drawer;
     private JLayeredPane room;
     private JFrame frame;
 
@@ -36,10 +38,8 @@ public class RoomOne{
         panel1.setOpaque(false);
         this.frame = frame;
         this.inv = inv;
-        key = new Key(new Dimension(50, 20), new Point(778, 900), inv);
-       // lighter = new Lighter(new Dimension(50, 20), new Point(200, 900), inv);
-       // flashlight = new Flashlight(new Dimension(50, 20), new Point(400, 100), inv);
-        zoom = new Zoom(new Dimension(50, 20), new Point(200, 500), inv);
+        key = new Key(new Dimension(50, 20), new Point(200, 500), inv);
+        zoom = new Zoom(new Dimension(50, 20), new Point(330, 520), inv);
         room = new JLayeredPane();
         setRoomOne();
     }
@@ -69,11 +69,21 @@ public class RoomOne{
         zoom.getLabel().setBounds((int)zoom.getPos().getX(), (int)zoom.getPos().getY(), (int) zoom.getSize().getWidth(), (int)zoom.getSize().getHeight());
         zoom.getLabel().setOpaque(false);
 
+       //setup Drawer
+        drawer = new Drawer();
+        drawer.setDrawer(drawer.getOpenedDrawerLabel(), false);
+
         //setup room
         room.add(labelRoom, new Integer(0));
         room.add(doorEnd.returnLabel(), new Integer(1));
-        room.add(key.getLabel(), new Integer(2));
-        room.add(zoom.getLabel(), new Integer(4));
+        room.add(drawer.getOpenedDrawerLabel(), new Integer(1));
+
+        room.add(zoom.getLabel(), new Integer(2));
+        room.add(drawer.getClosedDrawerLabel(), new Integer(3));
+      //  room.add(drawer.getOpenedDrawerLabel(), new Integer(1));
+        room.add(key.getLabel(), new Integer(4));
+
+
 
         panel1.add(room);
     }
@@ -81,6 +91,8 @@ public class RoomOne{
     public JLabel getLabelRoom() {
         return labelRoom;
     }
+
+    public Drawer getDrawer(){ return drawer; }
 
     public JPanel getPanel(){return panel1;}
     public JLayeredPane getRoom(){ return room; }

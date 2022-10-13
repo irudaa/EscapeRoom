@@ -23,7 +23,7 @@ public class Door {
 
         this.pos = pos;
         this.size = size;
-        doorImg = new ImageIcon(new ImageIcon("src/Images/door-146676_6401.png").getImage().getScaledInstance((int) size.getWidth(), (int) size.getHeight(), Image.SCALE_DEFAULT));;
+        doorImg = new ImageIcon(new ImageIcon("src/Images/door-146676_6401.png").getImage().getScaledInstance((int) size.getWidth(), (int) size.getHeight(), Image.SCALE_DEFAULT));
         door = new JLabel(doorImg);
     }
 

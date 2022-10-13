@@ -86,7 +86,7 @@ public class InventoryView extends JComponent{
 
 
         //Fourth item
-        flashlight = new Flashlight(new Dimension(100, 100), new Point(0, 0), this);
+        flashlight = new Flashlight(new Dimension(100, 70), new Point(0, 0), this);
         flashlight.setLabelVisible(false);
         inv.addObj(flashlight);
         JLabel square3 = new JLabel(imgSquare);

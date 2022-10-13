@@ -5,6 +5,7 @@ import Game.Collectibles.Key;
 import Game.Collectibles.Lighter;
 import Game.Collectibles.Zoom;
 import Game.InteractiveObj.Door;
+import Game.InteractiveObj.Painting;
 import Game.Inventory.InventoryView;
 
 import javax.swing.*;
@@ -21,6 +22,7 @@ public class RoomTwo extends JPanel{
 
     private Lighter lighter;
     private Flashlight flashlight;
+    private Painting painting;
     private InventoryView inv;
     public RoomTwo(JFrame frame, InventoryView inv) {
         CardLayout cardLayout = new CardLayout();
@@ -30,7 +32,6 @@ public class RoomTwo extends JPanel{
         this.frame = frame;
         this.inv = inv;
         lighter = new Lighter(new Dimension(50, 20), new Point(200, 900), inv);
-        flashlight = new Flashlight(new Dimension(50, 20), new Point(400, 100), inv);
         room = new JLayeredPane();
         setRoomTwo();
     }
@@ -50,21 +51,25 @@ public class RoomTwo extends JPanel{
         lighter.getLabel().setBounds((int)lighter.getPos().getX(), (int)lighter.getPos().getY(), (int) lighter.getSize().getWidth(), (int)lighter.getSize().getHeight());
         lighter.getLabel().setOpaque(false);
 
-        //Create Object: Flashlight
-        flashlight.isClicked();
-        flashlight.getLabel().setBounds((int)flashlight.getPos().getX(), (int)flashlight.getPos().getY(), (int)flashlight.getSize().getWidth(), (int)flashlight.getSize().getHeight());
-        flashlight.getLabel().setOpaque(false);
+
+        //Painting
+        painting =  new Painting();
+        painting.setPainting(painting.getOpenedPaintingLabel(), false);
 
         //setup room
         room.add(labelRoom, new Integer(0));
-        room.add(lighter.getLabel(), new Integer(2));
-        room.add(flashlight.getLabel(), new Integer(4));
+        room.add(lighter.getLabel(), new Integer(1));
+        room.add(painting.getClosedPaintingLabel(), new Integer(3));
+        room.add(painting.getOpenedPaintingLabel(), new Integer(3));
 
         panel2.add(room);
 
     }
 
     public JLayeredPane getRoom(){ return room; }
+
+    public Painting getPainting(){return painting; }
+
 
     public JPanel getPanel(){return panel2;}
 

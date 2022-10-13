@@ -30,6 +30,10 @@ public class Flashlight extends PickableObject {
         this.inventory = inventory;
     }
 
+    public Point getPosition(){
+        return pos;
+    }
+
     public ImageIcon getImg(){ return imageIcon; }
 
     public JLabel getLabel(){ return label; }
