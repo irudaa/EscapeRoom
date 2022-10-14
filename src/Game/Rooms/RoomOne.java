@@ -56,8 +56,12 @@ public class RoomOne{
 
         //create Door in room
         doorEnd = new Door(new Point(644, 162), new Dimension(201, 436));
-        doorEnd.returnLabel().setBounds((int)doorEnd.getX(), (int)doorEnd.getY(), doorEnd.getDoorImg().getIconWidth(), doorEnd.getDoorImg().getIconHeight());
-        doorEnd.returnLabel().setOpaque(false);
+        doorEnd.getClosedDoorLabel().setBounds((int)doorEnd.getX(), (int)doorEnd.getY(), doorEnd.getDoorImg().getIconWidth(), doorEnd.getDoorImg().getIconHeight());
+        doorEnd.getOpenedDoorLabel().setBounds((int)doorEnd.getX(), (int)doorEnd.getY(), doorEnd.getDoorImg().getIconWidth(), doorEnd.getDoorImg().getIconHeight());
+        doorEnd.getOpenedDoorLabel().setOpaque(false);
+        doorEnd.setDoor(doorEnd.getOpenedDoorLabel(), false);
+        doorEnd.getClosedDoorLabel().setOpaque(false);
+
 
         //Create Object: Key
         key.isClicked();
@@ -75,12 +79,11 @@ public class RoomOne{
 
         //setup room
         room.add(labelRoom, new Integer(0));
-        room.add(doorEnd.returnLabel(), new Integer(1));
+        room.add(doorEnd.getClosedDoorLabel(), new Integer(1));
         room.add(drawer.getOpenedDrawerLabel(), new Integer(1));
-
+        room.add(doorEnd.getOpenedDoorLabel(), new Integer(1));
         room.add(zoom.getLabel(), new Integer(2));
         room.add(drawer.getClosedDrawerLabel(), new Integer(3));
-      //  room.add(drawer.getOpenedDrawerLabel(), new Integer(1));
         room.add(key.getLabel(), new Integer(4));
 
 
@@ -94,6 +97,7 @@ public class RoomOne{
 
     public Drawer getDrawer(){ return drawer; }
 
+    public Door getDoor(){ return doorEnd; }
     public JPanel getPanel(){return panel1;}
     public JLayeredPane getRoom(){ return room; }
 }

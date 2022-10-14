@@ -67,14 +67,16 @@ public class AngleView extends JComponent{
 
     public void addButtons(){
 
-        ImageIcon imageIcon = new ImageIcon(new ImageIcon("src/Images/start-button.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        ImageIcon imageIcon = new ImageIcon(new ImageIcon("src/Images/rightButton.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
         next = new JButton(imageIcon);
-        next.setBounds(930,400, 50,50);
+        next.setBounds(930,700, 40,40);
+        next.setContentAreaFilled(false);
         next.setOpaque(false);
 
-        ImageIcon imageIcon2 = new ImageIcon(new ImageIcon("src/Images/start-button2.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        ImageIcon imageIcon2 = new ImageIcon(new ImageIcon("src/Images/leftButton.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
         previous = new JButton(imageIcon2);
-        previous.setBounds(10,400, 50,50);
+        previous.setBounds(10,700, 40,40);
+        previous.setContentAreaFilled(false);
         previous.setOpaque(false);
 
     }

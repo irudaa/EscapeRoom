@@ -2,6 +2,7 @@ package Game.Rooms;
 
 import Game.Collectibles.Flashlight;
 import Game.Collectibles.Lighter;
+import Game.InteractiveObj.Closet;
 import Game.InteractiveObj.Mirror.Mirror;
 import Game.Inventory.InventoryView;
 
@@ -19,6 +20,8 @@ public class RoomThree {
     private Lighter lighter;
     private InventoryView inv;
     private Mirror mirror;
+    private Closet closet;
+
     public RoomThree(JFrame frame, InventoryView inv) {
         CardLayout cardLayout = new CardLayout();
         panel3 = new JPanel(cardLayout);
@@ -26,7 +29,7 @@ public class RoomThree {
         panel3.setOpaque(false);
         this.frame = frame;
         this.inv = inv;
-        lighter = new Lighter(new Dimension(50, 20), new Point(200, 400), inv);
+        lighter = new Lighter(new Dimension(50, 50), new Point(150, 530), inv);
         room = new JLayeredPane();
         setRoomThree();
     }
@@ -34,7 +37,7 @@ public class RoomThree {
     public void setRoomThree(){
 
         //create Door room
-        imgRoom = new ImageIcon(new ImageIcon("src/Images/Room3.png").getImage().getScaledInstance(frame.getPreferredSize().width, frame.getPreferredSize().height, Image.SCALE_DEFAULT));
+        imgRoom = new ImageIcon(new ImageIcon("src/Images/Angle 22.png").getImage().getScaledInstance(frame.getPreferredSize().width, frame.getPreferredSize().height, Image.SCALE_DEFAULT));
         labelRoom = new JLabel(imgRoom);
         labelRoom.setBounds(0, 0, imgRoom.getIconWidth(), imgRoom.getIconHeight());
         room.setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
@@ -50,10 +53,17 @@ public class RoomThree {
         //Create Mirror
         mirror = new Mirror();
 
+        //Create Closet
+        closet = new Closet();
+        closet.setCloset(closet.getOpenedClosetLabel(), false);
+
         //setup room
         room.add(labelRoom, new Integer(0));
+        room.add(closet.getOpenedClosetLabel(), new Integer(1));
         room.add(lighter.getLabel(), new Integer(2));
+        room.add(closet.getClosedClosetLabel(), new Integer(3));
         room.add(mirror.getMirrorLabel(), new Integer(4));
+
 
 
         panel3.add(room);
@@ -67,6 +77,8 @@ public class RoomThree {
     }
 
     public JPanel getPanel(){return panel3;}
+
+    public Closet getCloset(){ return closet; }
 
 
 }

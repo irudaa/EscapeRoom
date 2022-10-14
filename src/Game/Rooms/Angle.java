@@ -32,6 +32,8 @@ public class Angle extends JComponent{
         openMirror();
         openPainting();
         openPillow();
+        openBox();
+        openCloset();
 
     }
 
@@ -104,6 +106,44 @@ public class Angle extends JComponent{
             public void mouseClicked(MouseEvent e) {
                 fourthAngle.getPillow().setPillow(fourthAngle.getPillow().getClosedPillowLabel(), true);
                 fourthAngle.getPillow().setPillow(fourthAngle.getPillow().getOpenedPillowLabel(), false);
+            }
+        });
+
+    }
+
+    private void openBox(){
+        fourthAngle.getBox().getClosedBoxLabel().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                fourthAngle.getBox().setBox(fourthAngle.getBox().getClosedBoxLabel(), false);
+                fourthAngle.getBox().setBox(fourthAngle.getBox().getOpenedBoxLabel(), true);
+            }
+        });
+
+        fourthAngle.getBox().getOpenedBoxLabel().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                fourthAngle.getBox().setBox(fourthAngle.getBox().getClosedBoxLabel(), true);
+                fourthAngle.getBox().setBox(fourthAngle.getBox().getOpenedBoxLabel(), false);
+            }
+        });
+
+    }
+
+    private void openCloset(){
+        thirdAngle.getCloset().getClosedClosetLabel().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                thirdAngle.getCloset().setCloset(thirdAngle.getCloset().getClosedClosetLabel(), false);
+                thirdAngle.getCloset().setCloset(thirdAngle.getCloset().getOpenedClosetLabel(), true);
+            }
+        });
+
+        thirdAngle.getCloset().getOpenedClosetLabel().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                thirdAngle.getCloset().setCloset(thirdAngle.getCloset().getClosedClosetLabel(), true);
+                thirdAngle.getCloset().setCloset(thirdAngle.getCloset().getOpenedClosetLabel(), false);
             }
         });
 

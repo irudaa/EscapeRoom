@@ -1,9 +1,6 @@
 package Game.Inventory;
 
-import Game.Collectibles.Flashlight;
-import Game.Collectibles.Key;
-import Game.Collectibles.Lighter;
-import Game.Collectibles.Zoom;
+import Game.Collectibles.*;
 import Game.ImageSelection;
 
 import javax.swing.*;
@@ -26,6 +23,8 @@ public class InventoryView extends JComponent{
     private Inventory inv;
 
     private Box vertical;
+    private Usb usb;
+
     public InventoryView(JPanel inventorySkeleton, Inventory inv){
         this.inventorySkeleton = inventorySkeleton;
         vertical = Box.createVerticalBox();
@@ -95,5 +94,20 @@ public class InventoryView extends JComponent{
         square3.add(flashlight.getLabel());
         vertical.add(square3);
 
+        //Fifth item
+        //Fourth item
+        usb = new Usb(new Dimension(100, 70), new Point(0, 0), this);
+        usb.setLabelVisible(false);
+        inv.addObj(usb);
+        JLabel square4 = new JLabel(imgSquare);
+        square4.setLayout(new FlowLayout());
+        square4.setBorder(new LineBorder(Color.BLACK));
+        square4.add(usb.getLabel());
+        vertical.add(square4);
+
+    }
+
+    public Usb getUsb() {
+        return usb;
     }
 }

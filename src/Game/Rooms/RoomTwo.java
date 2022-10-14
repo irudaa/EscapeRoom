@@ -56,6 +56,8 @@ public class RoomTwo extends JPanel{
         painting =  new Painting();
         painting.setPainting(painting.getOpenedPaintingLabel(), false);
 
+        //
+
         //setup room
         room.add(labelRoom, new Integer(0));
         room.add(lighter.getLabel(), new Integer(1));

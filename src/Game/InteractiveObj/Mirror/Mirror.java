@@ -11,7 +11,7 @@ public class Mirror {
     public Mirror() {
         mirrorImg = new ImageIcon(new ImageIcon("src/Images/smallMirror.png").getImage());
         mirrorLabel = new JLabel(mirrorImg);
-        mirrorLabel.setBounds(763, 281, mirrorImg.getIconWidth(), mirrorImg.getIconHeight());
+        mirrorLabel.setBounds(754, 275, mirrorImg.getIconWidth(), mirrorImg.getIconHeight());
         mirrorLabel.setOpaque(false);
     }
 
