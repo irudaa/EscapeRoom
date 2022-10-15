@@ -33,8 +33,6 @@ public class MirrorPaint extends JComponent {
                 g2.fillRect(x,y,30,30);
                 g2.dispose();
                 repaint();
-
-                System.out.println("dragged");
             }
         });
     }

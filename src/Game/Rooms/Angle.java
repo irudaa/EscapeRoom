@@ -1,6 +1,7 @@
 package Game.Rooms;
 
 import Game.InteractiveObj.Mirror.MirrorFrame;
+import Game.InteractiveObj.Safe.SafeFrame;
 import Game.Inventory.InventoryView;
 
 import javax.swing.*;
@@ -34,6 +35,7 @@ public class Angle extends JComponent{
         openPillow();
         openBox();
         openCloset();
+        openSafe();
 
     }
 
@@ -78,6 +80,7 @@ public class Angle extends JComponent{
             public void mouseClicked(MouseEvent e) {
                 secondAngle.getPainting().setPainting(secondAngle.getPainting().getClosedPaintingLabel(), false);
                 secondAngle.getPainting().setPainting(secondAngle.getPainting().getOpenedPaintingLabel(), true);
+                secondAngle.getSafe().setSafe(secondAngle.getSafe().getSafeLabel(), true);
             }
         });
 
@@ -86,6 +89,8 @@ public class Angle extends JComponent{
             public void mouseClicked(MouseEvent e) {
                 secondAngle.getPainting().setPainting(secondAngle.getPainting().getClosedPaintingLabel(), true);
                 secondAngle.getPainting().setPainting(secondAngle.getPainting().getOpenedPaintingLabel(), false);
+                secondAngle.getSafe().setSafe(secondAngle.getSafe().getSafeLabel(), false);
+
             }
         });
 
@@ -147,6 +152,23 @@ public class Angle extends JComponent{
             }
         });
 
+    }
+
+    private void openSafe(){
+        secondAngle.getSafe().getSafeLabel().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JFrame safeFrame = new JFrame();
+                safeFrame.setSize(800,600);
+                safeFrame.setVisible(true);
+                safeFrame.setLocationRelativeTo(null);
+                try {
+                    new SafeFrame(safeFrame, inv);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
 

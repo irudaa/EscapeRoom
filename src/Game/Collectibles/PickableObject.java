@@ -2,8 +2,7 @@ package Game.Collectibles;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
 
 public class PickableObject extends JComponent {
     private boolean isFound;

@@ -1,11 +1,9 @@
 package Game.Rooms;
 
 import Game.Collectibles.Flashlight;
-import Game.Collectibles.Key;
 import Game.Collectibles.Lighter;
-import Game.Collectibles.Zoom;
-import Game.InteractiveObj.Door;
 import Game.InteractiveObj.Painting;
+import Game.InteractiveObj.Safe.Safe;
 import Game.Inventory.InventoryView;
 
 import javax.swing.*;
@@ -24,6 +22,8 @@ public class RoomTwo extends JPanel{
     private Flashlight flashlight;
     private Painting painting;
     private InventoryView inv;
+    private Safe safe;
+
     public RoomTwo(JFrame frame, InventoryView inv) {
         CardLayout cardLayout = new CardLayout();
         panel2 = new JPanel(cardLayout);
@@ -56,13 +56,17 @@ public class RoomTwo extends JPanel{
         painting =  new Painting();
         painting.setPainting(painting.getOpenedPaintingLabel(), false);
 
-        //
+        //Safe
+        safe = new Safe();
+        safe.setSafe(safe.getSafeLabel(), false);
 
         //setup room
         room.add(labelRoom, new Integer(0));
         room.add(lighter.getLabel(), new Integer(1));
         room.add(painting.getClosedPaintingLabel(), new Integer(3));
         room.add(painting.getOpenedPaintingLabel(), new Integer(3));
+        room.add(safe.getSafeLabel(), new Integer(5));
+
 
         panel2.add(room);
 
@@ -76,4 +80,7 @@ public class RoomTwo extends JPanel{
     public JPanel getPanel(){return panel2;}
 
 
+    public Safe getSafe() {
+        return safe;
+    }
 }

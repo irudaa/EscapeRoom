@@ -38,7 +38,6 @@ public class RoomOne{
         panel1.setOpaque(false);
         this.frame = frame;
         this.inv = inv;
-        key = new Key(new Dimension(50, 20), new Point(200, 500), inv);
         zoom = new Zoom(new Dimension(50, 20), new Point(330, 520), inv);
         room = new JLayeredPane();
         setRoomOne();
@@ -63,11 +62,6 @@ public class RoomOne{
         doorEnd.getClosedDoorLabel().setOpaque(false);
 
 
-        //Create Object: Key
-        key.isClicked();
-        key.getLabel().setBounds((int)key.getPos().getX(), (int)key.getPos().getY(), (int) key.getSize().getWidth(), (int)key.getSize().getHeight());
-        key.getLabel().setOpaque(false);
-
         //Create Object: Zoom
         zoom.isClicked();
         zoom.getLabel().setBounds((int)zoom.getPos().getX(), (int)zoom.getPos().getY(), (int) zoom.getSize().getWidth(), (int)zoom.getSize().getHeight());
@@ -84,9 +78,6 @@ public class RoomOne{
         room.add(doorEnd.getOpenedDoorLabel(), new Integer(1));
         room.add(zoom.getLabel(), new Integer(2));
         room.add(drawer.getClosedDrawerLabel(), new Integer(3));
-        room.add(key.getLabel(), new Integer(4));
-
-
 
         panel1.add(room);
     }

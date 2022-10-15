@@ -47,14 +47,12 @@ public class MainView extends JFrame {
         frame.setPreferredSize(new Dimension(width, height));
         frame.setMinimumSize(new Dimension(width, height));
         frame.setMaximumSize(new Dimension(width, height));
-        //frame.setBounds(600,400,600,400);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         lpane = new JLayeredPane();
         frame.add(lpane);
-       // lpane.setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
-        //First Window shown
+
         addRoom();
         addFirstWindow();
         activateButtons();
@@ -137,7 +135,6 @@ public class MainView extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                System.out.println("ent");
                 cardLayout.next(roomPanel);
                 roomPanel.revalidate();
             }
@@ -147,7 +144,6 @@ public class MainView extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                System.out.println("enttt");
                 cardLayout.previous(roomPanel);
                 roomPanel.revalidate();
             }
