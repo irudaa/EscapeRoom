@@ -4,6 +4,7 @@ import Game.Collectibles.Flashlight;
 import Game.Collectibles.Key;
 import Game.Collectibles.Lighter;
 import Game.Collectibles.Zoom;
+import Game.InteractiveObj.Computer.Computer;
 import Game.InteractiveObj.Door;
 import Game.InteractiveObj.Drawer;
 import Game.Inventory.InventoryView;
@@ -30,6 +31,7 @@ public class RoomOne{
     private Lighter lighter;
     private Flashlight flashlight;
     private InventoryView inv;
+    private Computer computer;
 
     public RoomOne(JFrame frame, InventoryView inv) {
         CardLayout cardLayout = new CardLayout();
@@ -70,6 +72,9 @@ public class RoomOne{
        //setup Drawer
         drawer = new Drawer();
         drawer.setDrawer(drawer.getOpenedDrawerLabel(), false);
+        
+        //setup Computer
+        computer = new Computer();
 
         //setup room
         room.add(labelRoom, new Integer(0));
@@ -78,6 +83,7 @@ public class RoomOne{
         room.add(doorEnd.getOpenedDoorLabel(), new Integer(1));
         room.add(zoom.getLabel(), new Integer(2));
         room.add(drawer.getClosedDrawerLabel(), new Integer(3));
+        room.add(computer.getComputerLabel(), new Integer(4));
 
         panel1.add(room);
     }
@@ -91,4 +97,8 @@ public class RoomOne{
     public Door getDoor(){ return doorEnd; }
     public JPanel getPanel(){return panel1;}
     public JLayeredPane getRoom(){ return room; }
+
+    public Computer getComputer() {
+        return computer;
+    }
 }

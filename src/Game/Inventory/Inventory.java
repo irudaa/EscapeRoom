@@ -2,11 +2,16 @@ package Game.Inventory;
 
 import Game.Collectibles.Key;
 import Game.Collectibles.PickableObject;
+import Game.InteractiveObj.Computer.ComputerFrame;
+import Game.InteractiveObj.NewsPaper.Newspaper;
+import Game.InteractiveObj.NewsPaper.NewspaperFrame;
+import Game.InteractiveObj.Safe.SafeFrame;
 import Game.Main.MainView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Inventory extends JComponent{
@@ -37,9 +42,9 @@ public class Inventory extends JComponent{
     private JLabel zoomLabel;
     private JLabel lighterLabel;
 
-    private Point location;
+    private Point location, location1, location2;
 
-    private int x, y;
+    private int x, y, x1, y1, x2, y2;
 
 
     private ArrayList<PickableObject> isAquired = new ArrayList<>();
@@ -122,7 +127,6 @@ public Inventory getInventory(){ return this; }
                 view.getKey().getLabel().setVisible(false);
 
 
-
             }
         });
 
@@ -138,16 +142,9 @@ public Inventory getInventory(){ return this; }
             public void mouseReleased(MouseEvent e) {
                 keyLabel.setVisible(false);
                 view.getKey().getLabel().setVisible(true);
-              //  Point location = view.getKey().getLabel().getLocation();
-             //   int x= location.x -pressed1.getY()+ e.getX() ;
-             //   int y= location.y -pressed1.getY() + e.getY();
                 if(mainView.getAngleClass().getFirstAngle().getDoor().contains(new Point(x, y))){
                     mainView.getAngleClass().getFirstAngle().getDoor().openDoor();
-                  //  mainView.getAngleClass().getFirstAngle().getDoor().setDoor( mainView.getAngleClass().getFirstAngle().getDoor().getClosedDoorLabel(), false);
-                  //  mainView.getAngleClass().getFirstAngle().getDoor().setDoor( mainView.getAngleClass().getFirstAngle().getDoor().getOpenedDoorLabel(), true);
                 }
-
-
             }
         });
     }
@@ -191,10 +188,10 @@ public Inventory getInventory(){ return this; }
             public void mouseDragged(MouseEvent event) {
                 // super.mouseDragged(e);
                 lighterLabel.setVisible(true);
-                Point location = view.getLighter().getLabel().getLocation();
-                int x= location.x - pressed2.getY()+ event.getX() ;
-                int y= location.y - pressed2.getY() + event.getY() + 85;
-                lighterLabel.setBounds(x, y, view.getLighter().getImg().getIconWidth(), view.getLighter().getImg().getIconHeight());
+                location1 = view.getLighter().getLabel().getLocation();
+                x1= location1.x - pressed2.getY()+ event.getX() ;
+                y1= location1.y - pressed2.getY() + event.getY() + 85;
+                lighterLabel.setBounds(x1, y1, view.getLighter().getImg().getIconWidth(), view.getLighter().getImg().getIconHeight());
                 lighterLabel.setOpaque(false);
                 mainView.getPane().add(lighterLabel, new Integer(2));
                 view.getLighter().getLabel().setVisible(false);
@@ -214,6 +211,17 @@ public Inventory getInventory(){ return this; }
                 lighterLabel.setVisible(false);
                 view.getLighter().getLabel().setVisible(true);
 
+                if(mainView.getAngleClass().getSecondAngle().getNewspaper().contains(new Point(x1, y1))) {
+                    JFrame newspaperFrame = new JFrame();
+                    newspaperFrame.setSize(800, 420);
+                    newspaperFrame.setVisible(true);
+                    newspaperFrame.setLocationRelativeTo(null);
+                    try {
+                        new NewspaperFrame(newspaperFrame);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
             }
         });
     }
@@ -257,10 +265,10 @@ public Inventory getInventory(){ return this; }
             public void mouseDragged(MouseEvent event) {
                 // super.mouseDragged(e);
                 usbLabel.setVisible(true);
-                Point location = view.getUsb().getLabel().getLocation();
-                int x= location.x - pressed2.getY()+ event.getX();
-                int y= location.y - pressed2.getY() + event.getY() + 400;
-                usbLabel.setBounds(x, y, view.getUsb().getImg().getIconWidth(), view.getUsb().getImg().getIconHeight());
+                location2 = view.getUsb().getLabel().getLocation();
+                x2= location2.x - pressed2.getY()+ event.getX();
+                y2= location2.y - pressed2.getY() + event.getY() + 400;
+                usbLabel.setBounds(x2, y2, view.getUsb().getImg().getIconWidth(), view.getUsb().getImg().getIconHeight());
                 usbLabel.setOpaque(false);
                 mainView.getPane().add(usbLabel, new Integer(2));
                 view.getUsb().getLabel().setVisible(false);
@@ -279,7 +287,17 @@ public Inventory getInventory(){ return this; }
             public void mouseReleased(MouseEvent e) {
                 usbLabel.setVisible(false);
                 view.getUsb().getLabel().setVisible(true);
-
+                if(mainView.getAngleClass().getFirstAngle().getComputer().contains(new Point(x2, y2))) {
+                    JFrame compFrame = new JFrame();
+                    compFrame.setSize(800, 600);
+                    compFrame.setVisible(true);
+                    compFrame.setLocationRelativeTo(null);
+                    try {
+                        new ComputerFrame(compFrame);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
             }
         });
     }

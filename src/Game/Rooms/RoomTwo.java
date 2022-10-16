@@ -2,6 +2,8 @@ package Game.Rooms;
 
 import Game.Collectibles.Flashlight;
 import Game.Collectibles.Lighter;
+import Game.InteractiveObj.Door;
+import Game.InteractiveObj.NewsPaper.Newspaper;
 import Game.InteractiveObj.Painting;
 import Game.InteractiveObj.Safe.Safe;
 import Game.Inventory.InventoryView;
@@ -23,6 +25,7 @@ public class RoomTwo extends JPanel{
     private Painting painting;
     private InventoryView inv;
     private Safe safe;
+    private Newspaper newspaper;
 
     public RoomTwo(JFrame frame, InventoryView inv) {
         CardLayout cardLayout = new CardLayout();
@@ -51,7 +54,6 @@ public class RoomTwo extends JPanel{
         lighter.getLabel().setBounds((int)lighter.getPos().getX(), (int)lighter.getPos().getY(), (int) lighter.getSize().getWidth(), (int)lighter.getSize().getHeight());
         lighter.getLabel().setOpaque(false);
 
-
         //Painting
         painting =  new Painting();
         painting.setPainting(painting.getOpenedPaintingLabel(), false);
@@ -60,13 +62,17 @@ public class RoomTwo extends JPanel{
         safe = new Safe();
         safe.setSafe(safe.getSafeLabel(), false);
 
+        //NewsPaper
+        newspaper = new Newspaper();
+
+
         //setup room
         room.add(labelRoom, new Integer(0));
         room.add(lighter.getLabel(), new Integer(1));
         room.add(painting.getClosedPaintingLabel(), new Integer(3));
         room.add(painting.getOpenedPaintingLabel(), new Integer(3));
         room.add(safe.getSafeLabel(), new Integer(5));
-
+        room.add(newspaper.getNewspaperLabel(), new Integer(6));
 
         panel2.add(room);
 
@@ -82,5 +88,9 @@ public class RoomTwo extends JPanel{
 
     public Safe getSafe() {
         return safe;
+    }
+
+    public Newspaper getNewspaper() {
+        return newspaper;
     }
 }
