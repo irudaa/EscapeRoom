@@ -7,6 +7,7 @@ import Game.Collectibles.Zoom;
 import Game.InteractiveObj.Computer.Computer;
 import Game.InteractiveObj.Door;
 import Game.InteractiveObj.Drawer;
+import Game.InteractiveObj.Switch;
 import Game.Inventory.InventoryView;
 
 import javax.swing.*;
@@ -16,22 +17,15 @@ public class RoomOne{
 
     private JPanel panel1;
     private Door doorEnd;
-
-    private ImageIcon imgDoor;
     private ImageIcon imgRoom;
-    private JLabel labelDoor;
     private JLabel labelRoom;
-
     private Drawer drawer;
     private JLayeredPane room;
     private JFrame frame;
-
-    private Key key;
     private Zoom zoom;
-    private Lighter lighter;
-    private Flashlight flashlight;
     private InventoryView inv;
     private Computer computer;
+    private Switch switchStart;
 
     public RoomOne(JFrame frame, InventoryView inv) {
         CardLayout cardLayout = new CardLayout();
@@ -76,20 +70,20 @@ public class RoomOne{
         //setup Computer
         computer = new Computer();
 
+        //turn on Switch
+        switchStart = new Switch();
+
         //setup room
         room.add(labelRoom, new Integer(0));
         room.add(doorEnd.getClosedDoorLabel(), new Integer(1));
         room.add(drawer.getOpenedDrawerLabel(), new Integer(1));
         room.add(doorEnd.getOpenedDoorLabel(), new Integer(1));
+        room.add(switchStart.getClosedSwitchLabel(), new Integer(1));
         room.add(zoom.getLabel(), new Integer(2));
         room.add(drawer.getClosedDrawerLabel(), new Integer(3));
         room.add(computer.getComputerLabel(), new Integer(4));
 
         panel1.add(room);
-    }
-
-    public JLabel getLabelRoom() {
-        return labelRoom;
     }
 
     public Drawer getDrawer(){ return drawer; }
@@ -100,5 +94,9 @@ public class RoomOne{
 
     public Computer getComputer() {
         return computer;
+    }
+
+    public Switch getSwitch() {
+        return switchStart;
     }
 }

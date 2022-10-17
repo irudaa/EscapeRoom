@@ -12,31 +12,36 @@ import java.io.IOException;
 
 public class NewspaperPaint extends JComponent {
     BufferedImage newspaperPaintImage;
+
     public NewspaperPaint() throws IOException {
 
-        this.setBackground(Color.white);
 
         try {
-            newspaperPaintImage = ImageIO.read(new File("src/Images/blacksquare.jpg"));
+            newspaperPaintImage = ImageIO.read(new File("src/Images/Rectangle 93.png"));
+
         }
         catch(IOException ex){
             ex.printStackTrace();
         }
 
         this.addMouseMotionListener(new MouseMotionAdapter(){
-            public void mouseDragged(MouseEvent e){
+            public void mouseMoved(MouseEvent e){
                 int x = e.getX();
                 int y = e.getY();
+                System.out.println("here");
 
                 Graphics2D g2= newspaperPaintImage.createGraphics();
-
+                g2.setColor(Color.black);
+                g2.fillRect(0, 0,800,420);
                 g2.setComposite(AlphaComposite.Clear);
-                g2.fillRect(x,y,30,30);
+                g2.fillOval(x, y,100,100);
                 g2.dispose();
                 repaint();
             }
         });
     }
+
+
 
     @Override
     protected void paintComponent (Graphics g)
@@ -45,7 +50,6 @@ public class NewspaperPaint extends JComponent {
         Graphics2D g2 = (Graphics2D) g.create();
         g2.drawImage(newspaperPaintImage, 0, 0, this);
         g2.dispose();
-
     }
 }
 

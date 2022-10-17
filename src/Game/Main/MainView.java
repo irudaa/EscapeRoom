@@ -1,5 +1,6 @@
 package Game.Main;
 
+import Game.InteractiveObj.Switch;
 import Game.Inventory.Inventory;
 import Game.Rooms.Angle;
 
@@ -7,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class MainView extends JFrame {
 
@@ -17,6 +19,9 @@ public class MainView extends JFrame {
 
     protected JLabel blackSquare;
 
+    private JLabel story;
+
+
     private boolean isActive = false;
 
     protected JPanel windowPanel, inventoryPanel;
@@ -26,6 +31,8 @@ public class MainView extends JFrame {
 
     private Inventory inventory;
 
+    private JLayeredPane startPane;
+
     private int width;
     private int height;
 
@@ -33,7 +40,9 @@ public class MainView extends JFrame {
     //private JButton previous;
 
     private CardLayout cardLayout;
-    public MainView(){
+    private MainPaint storyPaint;
+
+    public MainView() throws IOException {
         super("Let me Out!");
         frame = new JFrame();
         frame.setLocationRelativeTo(null);
@@ -42,7 +51,7 @@ public class MainView extends JFrame {
         initGUI();
     }
 
-    private void initGUI(){
+    private void initGUI() throws IOException {
         //setting main qualities in place
         frame.setPreferredSize(new Dimension(width, height));
         frame.setMinimumSize(new Dimension(width, height));
@@ -55,6 +64,7 @@ public class MainView extends JFrame {
 
         addRoom();
         addFirstWindow();
+        setupStory();
         activateButtons();
 
         frame.setVisible(true);
@@ -64,30 +74,38 @@ public class MainView extends JFrame {
 
     public void addFirstWindow(){
 
-        ImageIcon imgStart = new ImageIcon(new ImageIcon("src/Images/GA8bmPn.png").getImage().getScaledInstance(frame.getPreferredSize().width, frame.getPreferredSize().height, Image.SCALE_DEFAULT));
-        ImageIcon switchOnOff = new ImageIcon(new ImageIcon("src/Images/5a2c682d8b79d9.6951852315128596935713.png").getImage().getScaledInstance(200, 120, Image.SCALE_DEFAULT));
+        startPane = new JLayeredPane();
+        startPane.setBounds(0, 0, 1000, 800);
+
+        //Background
+        ImageIcon imgStart = new ImageIcon(new ImageIcon("src/Images/Angle 36.png").getImage().getScaledInstance(frame.getPreferredSize().width, frame.getPreferredSize().height, Image.SCALE_DEFAULT));
         blackSquare = new JLabel(imgStart);
-        blackSquare.setLayout(new FlowLayout());
+        blackSquare.setBounds(0, 0, imgStart.getIconWidth(), imgStart.getIconHeight());
+        blackSquare.setOpaque(false);
+
+      //  start button
+        ImageIcon switchOnOff = new ImageIcon(new ImageIcon("src/Images/Group 16.png").getImage().getScaledInstance(376, 108, Image.SCALE_DEFAULT));
         start = new JButton(switchOnOff);
-        start.setPreferredSize(new Dimension(280, 180));
-        start.setLocation(new Point(200, 300));
+        start.setBounds(312, 497, switchOnOff.getIconWidth(), switchOnOff.getIconHeight());
+        start.setOpaque(false);
         start.setContentAreaFilled(false);
-        windowPanel = new JPanel();
-        windowPanel.setLayout(new FlowLayout());
-        JTextArea story = new JTextArea(24, 80);
-        story.setBackground(Color.black);
-        story.setEditable(false);
-        story.append("\n He wakes up to find himself in a bizarre room. He doesn't remember who he is nor what he");
-        story.append("\n is doing there. The room smells funny and old, it doesn’t seem to be lived in.");
-        story.append( "\n He wonders where he is, who he is, why he is here. He wonders if they");
-        story.append( "\n will ever let him out.");
-        story.setForeground(Color.white);
-        story.setFont(new Font(Font.MONOSPACED, Font.BOLD, 16));
-        blackSquare.add(story);
-        blackSquare.add(start);
-        windowPanel.add(blackSquare);
-        windowPanel.setBounds(0, 0, frame.getPreferredSize().width, frame.getPreferredSize().height);
-        lpane.add(windowPanel, new Integer(4));
+        start.setBorderPainted(false);
+
+        startPane.add(blackSquare, new Integer(0));
+        startPane.add(start, new Integer(1));
+
+        lpane.add(startPane, new Integer(5));
+
+    }
+
+    public void setupStory() throws IOException {
+        //Background
+
+        storyPaint = new MainPaint();
+        storyPaint.setBounds(0, 0, width, height);
+        storyPaint.setOpaque(false);
+        lpane.add(storyPaint, new Integer(4));
+
 
     }
 
@@ -154,7 +172,9 @@ public class MainView extends JFrame {
 
     public JLayeredPane getPane(){ return lpane; }
 
+    public JLayeredPane getStartPane(){return startPane;}
 
-
-
+    public MainPaint getStoryPaint(){
+        return storyPaint;
+    }
 }

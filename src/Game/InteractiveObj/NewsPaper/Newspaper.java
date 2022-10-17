@@ -10,7 +10,7 @@ public class Newspaper {
     public Newspaper() {
         newspaperImg = new ImageIcon(new ImageIcon("src/Images/passport-576913_640.png").getImage());
         newspaperLabel = new JLabel(newspaperImg);
-        newspaperLabel.setBounds(687, 453, newspaperImg.getIconWidth(), newspaperImg.getIconHeight());
+        newspaperLabel.setBounds(637, 403, newspaperImg.getIconWidth() + 100, newspaperImg.getIconHeight()+100);
         newspaperLabel.setOpaque(false);
     }
 

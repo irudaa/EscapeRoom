@@ -31,7 +31,7 @@ public class RoomFour extends JPanel{
         this.frame = frame;
         this.inv = inv;
         flashlight = new Flashlight(new Dimension(50, 35), new Point(310, 491), inv);
-        usb = new Usb(new Dimension(50, 35), new Point(850, 560), inv);
+        usb = new Usb(new Dimension(50, 35), new Point(890, 540), inv);
         room = new JLayeredPane();
         setRoomThree();
     }

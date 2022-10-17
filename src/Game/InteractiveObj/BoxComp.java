@@ -17,9 +17,9 @@ public class BoxComp {
         closedBoxLabel.setBounds(824, 542, closedBoxImg.getIconWidth(), closedBoxImg.getIconHeight());
         closedBoxLabel.setOpaque(false);
 
-        openBoxImg = new ImageIcon(new ImageIcon("src/Images/corrugated-packaging-box-500x500-removebg-preview.png").getImage().getScaledInstance(closedBoxImg.getIconWidth() + 80, closedBoxImg.getIconHeight() + 80, Image.SCALE_DEFAULT));
+        openBoxImg = new ImageIcon(new ImageIcon("src/Images/Open Box.png").getImage().getScaledInstance(closedBoxImg.getIconWidth() + 60, closedBoxImg.getIconHeight() + 60, Image.SCALE_DEFAULT));
         openedBoxLabel = new JLabel(openBoxImg);
-        openedBoxLabel.setBounds(780, 480, closedBoxImg.getIconWidth() +80, closedBoxImg.getIconHeight()+80);
+        openedBoxLabel.setBounds(780, 490, closedBoxImg.getIconWidth() +80, closedBoxImg.getIconHeight()+80);
         openedBoxLabel.setOpaque(false);
 
     }

@@ -96,7 +96,7 @@ public class InventoryView extends JComponent{
 
         //Fifth item
         //Fourth item
-        usb = new Usb(new Dimension(100, 70), new Point(0, 0), this);
+        usb = new Usb(new Dimension(100, 100), new Point(0, 0), this);
         usb.setLabelVisible(false);
         inv.addObj(usb);
         JLabel square4 = new JLabel(imgSquare);
