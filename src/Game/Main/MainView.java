@@ -44,6 +44,7 @@ public class MainView extends JFrame {
 
     private int counter;
     private JLabel end;
+    private JButton buttonRestart;
 
     public MainView() throws IOException {
         super("Let me Out!");
@@ -54,7 +55,7 @@ public class MainView extends JFrame {
         initGUI();
     }
 
-    private void initGUI() throws IOException {
+    public void initGUI() throws IOException {
         //setting main qualities in place
         frame.setPreferredSize(new Dimension(width, height));
         frame.setMinimumSize(new Dimension(width, height));
@@ -177,8 +178,16 @@ public class MainView extends JFrame {
         end.setBounds(0, 0, 1000, 800);
         end.setOpaque(false);
         end.setVisible(false);
+        ImageIcon img2 = new ImageIcon(new ImageIcon("src/Images/replay.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        buttonRestart = new JButton("Replay", img2);
+        buttonRestart.setForeground(Color.white);
+        buttonRestart.setBounds(800, 600, 200, 100);
+        buttonRestart.setOpaque(false);
+        buttonRestart.setVisible(false);
+        buttonRestart.setContentAreaFilled(false);
+        buttonRestart.setBorderPainted(false);
         lpane.add(end, new Integer(6));
-
+        lpane.add(buttonRestart, new Integer(7));
 
     }
 
@@ -191,6 +200,8 @@ public class MainView extends JFrame {
     public JLayeredPane getStartPane(){return startPane;}
 
     public JPanel getRoomPanel(){ return roomPanel; }
+
+    public JButton getReplay(){ return buttonRestart; }
 
     public MainPaint getStoryPaint(){
         return storyPaint;

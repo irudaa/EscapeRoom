@@ -2,10 +2,13 @@ package Game.Collectibles;
 
 import Game.Inventory.InventoryView;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 public class Key extends PickableObject {
 
@@ -52,6 +55,15 @@ public class Key extends PickableObject {
                 if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1){
                     setFound(true);
                     objectFound();
+                    try {
+                        Key.super.playSound();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    } catch (UnsupportedAudioFileException ex) {
+                        throw new RuntimeException(ex);
+                    } catch (LineUnavailableException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     inventory.getKey().setLabelVisible(true);
                 }
             }

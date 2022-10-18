@@ -3,6 +3,7 @@ package Game.Main;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 public class MainViewController extends JComponent {
 
@@ -25,33 +26,13 @@ public class MainViewController extends JComponent {
             }
         });
 
-        main.getStoryPaint().addMouseListener(new MouseListener(){
+        main.getStoryPaint().addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(main.getStoryPaint().contains(new Point(e.getX(), e.getY()))){
                     System.out.println("entered");
                     main.getStoryPaint().setVisible(false);
                 }
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
             }
 
         });
@@ -62,9 +43,12 @@ public class MainViewController extends JComponent {
             @Override
             public void mouseClicked(MouseEvent e) {
                 main.getEnd().setVisible(true);
-            }
-        });
-    }
+                main.getReplay().setVisible(true);
 
+            }
+
+        });
+
+    }
 
 }
