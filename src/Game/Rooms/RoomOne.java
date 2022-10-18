@@ -51,8 +51,6 @@ public class RoomOne{
         //
         doorEnd = new Door(new Point(644, 162), new Dimension(201, 436));
         doorEnd.getClosedDoorLabel().setBounds((int)doorEnd.getX(), (int)doorEnd.getY(), doorEnd.getDoorImg().getIconWidth(), doorEnd.getDoorImg().getIconHeight());
-     //   doorEnd.getOpenedDoorLabel().setBounds(557, 130, doorEnd.getOpenedDoorLabel().getWidth(), doorEnd.getOpenedDoorLabel().getHeight());
-      //  doorEnd.getOpenedDoorLabel().setOpaque(false);
         doorEnd.setDoor(doorEnd.getOpenedDoorLabel(), false);
         doorEnd.getClosedDoorLabel().setOpaque(false);
 

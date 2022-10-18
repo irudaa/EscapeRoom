@@ -43,6 +43,7 @@ public class MainView extends JFrame {
     private MainPaint storyPaint;
 
     private int counter;
+    private JLabel end;
 
     public MainView() throws IOException {
         super("Let me Out!");
@@ -68,7 +69,7 @@ public class MainView extends JFrame {
         addFirstWindow();
         setupStory();
         activateButtons();
-
+        endGame();
         frame.setVisible(true);
         frame.pack();
     }
@@ -169,6 +170,19 @@ public class MainView extends JFrame {
             }
         });
     }
+
+    public void endGame(){
+        ImageIcon img = new ImageIcon(new ImageIcon("src/Images/theEnd.png").getImage());
+        end = new JLabel(img);
+        end.setBounds(0, 0, 1000, 800);
+        end.setOpaque(false);
+        end.setVisible(false);
+        lpane.add(end, new Integer(6));
+
+
+    }
+
+    public JLabel getEnd(){ return end; }
 
     public Angle getAngleClass(){ return room; }
 

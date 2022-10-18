@@ -14,6 +14,7 @@ public class MainViewController extends JComponent {
         this.main = main;
         switchLabel = new JLabel(new ImageIcon(main.getStoryPaint().getSwitch()));
         initGame();
+        endGame();
     }
 
     private void initGame(){
@@ -53,6 +54,15 @@ public class MainViewController extends JComponent {
 
             }
 
+        });
+    }
+
+    private void endGame(){
+        main.getAngleClass().getFirstAngle().getDoor().getOpenedDoorLabel().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                main.getEnd().setVisible(true);
+            }
         });
     }
 

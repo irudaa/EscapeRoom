@@ -154,6 +154,7 @@ public class Angle extends JComponent{
 
     }
 
+
     private void openSafe(){
         secondAngle.getSafe().getSafeLabel().addMouseListener(new MouseAdapter() {
             @Override
