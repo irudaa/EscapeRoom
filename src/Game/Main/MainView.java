@@ -42,6 +42,8 @@ public class MainView extends JFrame {
     private CardLayout cardLayout;
     private MainPaint storyPaint;
 
+    private int counter;
+
     public MainView() throws IOException {
         super("Let me Out!");
         frame = new JFrame();
@@ -173,6 +175,8 @@ public class MainView extends JFrame {
     public JLayeredPane getPane(){ return lpane; }
 
     public JLayeredPane getStartPane(){return startPane;}
+
+    public JPanel getRoomPanel(){ return roomPanel; }
 
     public MainPaint getStoryPaint(){
         return storyPaint;

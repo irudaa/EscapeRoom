@@ -1,5 +1,6 @@
-package Game.Collectibles;
+package Game.Collectibles.Zoom;
 
+import Game.Collectibles.PickableObject;
 import Game.Inventory.InventoryView;
 
 import javax.swing.*;

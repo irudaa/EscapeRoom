@@ -11,14 +11,9 @@ public class Door {
 
     private JLabel openedDoorLabel;
     private ImageIcon openedDoorImg;
-    private ImageIcon img;
-
     private ImageIcon doorImg;
-    private int x;
-    private int y;
 
     private Point pos;
-
     private Dimension size;
     private boolean isOpened = false;
 
@@ -30,10 +25,9 @@ public class Door {
         this.size = size;
         doorImg = new ImageIcon(new ImageIcon("src/Images/closedDoor.png").getImage().getScaledInstance((int) size.getWidth(), (int) size.getHeight(), Image.SCALE_DEFAULT));
         door = new JLabel(doorImg);
-
-        openedDoorImg = new ImageIcon(new ImageIcon("src/Images/kindpng_207337.png").getImage().getScaledInstance((int) size.getWidth(), (int) size.getHeight(), Image.SCALE_DEFAULT));
+        openedDoorImg = new ImageIcon(new ImageIcon("src/Images/openedDoor.png").getImage());
         openedDoorLabel = new JLabel(openedDoorImg);
-        openedDoorLabel.setBounds(644, 162, openedDoorImg.getIconWidth(), openedDoorImg.getIconHeight());
+        openedDoorLabel.setBounds(503, 101,openedDoorImg.getIconWidth()+30,openedDoorImg.getIconHeight()+30);
         openedDoorLabel.setOpaque(false);
     }
 
@@ -44,19 +38,6 @@ public class Door {
     public double getY(){
         return pos.getY();
     }
-
-    public Point getPosition(){ return pos; }
-
-    public Dimension getDim(){ return size; }
-
-    public double sizeX(){
-        return size.getWidth();
-    }
-    public double sizeY(){
-        return size.getHeight();
-    }
-
-
 
     public ImageIcon getDoorImg(){
         return doorImg;
@@ -71,17 +52,6 @@ public class Door {
     }
     public JLabel getOpenedDoorLabel(){
         return openedDoorLabel;
-    }
-
-
-    public boolean isOpened(){
-        return isOpened;
-    }
-
-    public void setIsOpened(boolean set){
-        if(isOpened != set){
-            isOpened = set;
-        }
     }
 
     public void openDoor(){

@@ -1,7 +1,7 @@
 package Game.Inventory;
 
 import Game.Collectibles.*;
-import Game.ImageSelection;
+import Game.Collectibles.Zoom.Zoom;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;

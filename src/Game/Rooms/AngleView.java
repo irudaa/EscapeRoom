@@ -3,7 +3,7 @@ package Game.Rooms;
 import Game.Collectibles.Flashlight;
 import Game.Collectibles.Key;
 import Game.Collectibles.Lighter;
-import Game.Collectibles.Zoom;
+import Game.Collectibles.Zoom.Zoom;
 import Game.InteractiveObj.Door;
 import Game.Inventory.InventoryView;
 

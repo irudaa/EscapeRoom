@@ -1,14 +1,18 @@
 package Game.Main;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 public class MainViewController extends JComponent {
 
     private MainView main;
 
+    private JLabel switchLabel;
+
     public MainViewController(MainView main){
         this.main = main;
+        switchLabel = new JLabel(new ImageIcon(main.getStoryPaint().getSwitch()));
         initGame();
     }
 
@@ -20,10 +24,13 @@ public class MainViewController extends JComponent {
             }
         });
 
-        main.getAngleClass().getFirstAngle().getSwitch().getClosedSwitchLabel().addMouseListener(new MouseListener(){
+        main.getStoryPaint().addMouseListener(new MouseListener(){
             @Override
             public void mouseClicked(MouseEvent e) {
-                main.getStoryPaint().setVisible(false);
+                if(main.getStoryPaint().contains(new Point(e.getX(), e.getY()))){
+                    System.out.println("entered");
+                    main.getStoryPaint().setVisible(false);
+                }
             }
 
             @Override

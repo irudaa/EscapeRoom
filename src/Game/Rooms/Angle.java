@@ -172,13 +172,9 @@ public class Angle extends JComponent{
     }
 
 
-
-
-
     public AngleView getView() {
         return view;
     }
-
 
     public RoomOne getFirstAngle() {
         return firstAngle;

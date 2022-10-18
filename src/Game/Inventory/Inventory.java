@@ -1,7 +1,9 @@
 package Game.Inventory;
 
+import Game.Collectibles.FlashlightPaint;
 import Game.Collectibles.Key;
 import Game.Collectibles.PickableObject;
+import Game.Collectibles.Zoom.ZoomFrame;
 import Game.InteractiveObj.Computer.ComputerFrame;
 import Game.InteractiveObj.NewsPaper.Newspaper;
 import Game.InteractiveObj.NewsPaper.NewspaperFrame;
@@ -49,6 +51,7 @@ public class Inventory extends JComponent{
 
     private ArrayList<PickableObject> isAquired = new ArrayList<>();
     private JLabel usbLabel;
+    private FlashlightPaint paint;
 
     public Inventory(JPanel viewPanel, JFrame frame, MainView mainView){
        view = new InventoryView(viewPanel, this);
@@ -87,6 +90,9 @@ public class Inventory extends JComponent{
         ImageIcon imageIcon5 = view.getUsb().getImg();
         usbLabel = new JLabel(imageIcon5);
 
+        //light
+        paint = new FlashlightPaint(x +20, y +20);
+
     }
 
 
@@ -119,7 +125,7 @@ public Inventory getInventory(){ return this; }
              //   super.mouseDragged(e);
                 keyLabel.setVisible(true);
                 location = view.getKey().getLabel().getLocation();
-                x= location.x -pressed1.getY()+ e.getX() ;
+                x= location.x -pressed1.getX()+ e.getX() ;
                 y= location.y -pressed1.getY() + e.getY();
                 keyLabel.setBounds(x, y, view.getKey().getImg().getIconWidth(), view.getKey().getImg().getIconHeight());
                 keyLabel.setOpaque(false);
@@ -143,7 +149,11 @@ public Inventory getInventory(){ return this; }
                 keyLabel.setVisible(false);
                 view.getKey().getLabel().setVisible(true);
                 if(mainView.getAngleClass().getFirstAngle().getDoor().contains(new Point(x, y))){
-                    mainView.getAngleClass().getFirstAngle().getDoor().openDoor();
+                    for (Component c : mainView.getRoomPanel().getComponents()){
+                        if(c.isVisible() == true){
+                            mainView.getAngleClass().getFirstAngle().getDoor().openDoor();
+                        }
+                    }
                 }
             }
         });
@@ -156,11 +166,25 @@ public Inventory getInventory(){ return this; }
                // super.mouseDragged(e);
                 flashlightLabel.setVisible(true);
                 Point location = view.getFlashlight().getLabel().getLocation();
-                int x= location.x - pressed2.getY()+ event.getX() ;
+                int x= location.x - pressed2.getX()+ event.getX() ;
                 int y= location.y - pressed2.getY() + event.getY() + 300;
                 flashlightLabel.setBounds(x, y, view.getFlashlight().getImg().getIconWidth(), view.getFlashlight().getImg().getIconHeight());
                 flashlightLabel.setOpaque(false);
+                paint.setVisible(true);
+                paint.setBounds(x - 200, y - 190, 200, 200);
+                paint.setOpaque(false);
+                repaint();
+                if(paint.contains(mainView.getAngleClass().getFourthAngle().getNumberPoint())){
+                    for (Component c : mainView.getRoomPanel().getComponents()){
+                        if(c.isVisible() == true){
+                            mainView.getAngleClass().getFourthAngle().getNumber().setVisible(true);
+                        }
+                    }
+                }else{
+                 mainView.getAngleClass().getFourthAngle().getNumber().setVisible(false);
+                }
                 mainView.getPane().add(flashlightLabel, new Integer(2));
+                mainView.getPane().add(paint, new Integer(2));
                 view.getFlashlight().getLabel().setVisible(false);
             }
         });
@@ -177,6 +201,7 @@ public Inventory getInventory(){ return this; }
             public void mouseReleased(MouseEvent e) {
                 flashlightLabel.setVisible(false);
                 view.getFlashlight().getLabel().setVisible(true);
+                paint.setVisible(false);
 
             }
         });
@@ -189,7 +214,7 @@ public Inventory getInventory(){ return this; }
                 // super.mouseDragged(e);
                 lighterLabel.setVisible(true);
                 location1 = view.getLighter().getLabel().getLocation();
-                x1= location1.x - pressed2.getY()+ event.getX() ;
+                x1= location1.x - pressed2.getX()+ event.getX();
                 y1= location1.y - pressed2.getY() + event.getY() + 85;
                 lighterLabel.setBounds(x1, y1, view.getLighter().getImg().getIconWidth(), view.getLighter().getImg().getIconHeight());
                 lighterLabel.setOpaque(false);
@@ -212,15 +237,20 @@ public Inventory getInventory(){ return this; }
                 view.getLighter().getLabel().setVisible(true);
 
                 if(mainView.getAngleClass().getSecondAngle().getNewspaper().contains(new Point(x1, y1))) {
-                    JFrame newspaperFrame = new JFrame();
-                    newspaperFrame.setSize(800, 420);
-                    newspaperFrame.setVisible(true);
-                    newspaperFrame.setLocationRelativeTo(null);
-                    try {
-                        new NewspaperFrame(newspaperFrame);
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
+                    for (Component c : mainView.getRoomPanel().getComponents()){
+                        if(c.isVisible() == true){
+                            JFrame newspaperFrame = new JFrame();
+                            newspaperFrame.setSize(800, 420);
+                            newspaperFrame.setVisible(true);
+                            newspaperFrame.setLocationRelativeTo(null);
+                            try {
+                                new NewspaperFrame(newspaperFrame);
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                        }
                     }
+
                 }
             }
         });
@@ -233,7 +263,7 @@ public Inventory getInventory(){ return this; }
                 // super.mouseDragged(e);
                 zoomLabel.setVisible(true);
                 Point location = view.getZoom().getLabel().getLocation();
-                int x= location.x - pressed2.getY()+ event.getX()-15;
+                int x= location.x - pressed2.getX()+ event.getX()-15;
                 int y= location.y - pressed2.getY() + event.getY() + 170;
                 zoomLabel.setBounds(x, y, view.getZoom().getImg().getIconWidth(), view.getZoom().getImg().getIconHeight());
                 zoomLabel.setOpaque(false);
@@ -254,6 +284,11 @@ public Inventory getInventory(){ return this; }
             public void mouseReleased(MouseEvent e) {
                 zoomLabel.setVisible(false);
                 view.getZoom().getLabel().setVisible(true);
+                for (Component c : mainView.getRoomPanel().getComponents()){
+                    if(c.isVisible() == true){
+                        JFrame zoom = new ZoomFrame();
+                    }
+                }
 
             }
         });
@@ -266,7 +301,7 @@ public Inventory getInventory(){ return this; }
                 // super.mouseDragged(e);
                 usbLabel.setVisible(true);
                 location2 = view.getUsb().getLabel().getLocation();
-                x2= location2.x - pressed2.getY()+ event.getX();
+                x2= location2.x - pressed2.getX()+ event.getX();
                 y2= location2.y - pressed2.getY() + event.getY() + 400;
                 usbLabel.setBounds(x2, y2, view.getUsb().getImg().getIconWidth(), view.getUsb().getImg().getIconHeight());
                 usbLabel.setOpaque(false);
@@ -288,15 +323,19 @@ public Inventory getInventory(){ return this; }
                 usbLabel.setVisible(false);
                 view.getUsb().getLabel().setVisible(true);
                 if(mainView.getAngleClass().getFirstAngle().getComputer().contains(new Point(x2, y2))) {
-                    JFrame compFrame = new JFrame();
-                    compFrame.setSize(800, 600);
-                    compFrame.setVisible(true);
-                    compFrame.setLocationRelativeTo(null);
-                    try {
-                        new ComputerFrame(compFrame);
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
+                    for (Component c : mainView.getRoomPanel().getComponents()){
+                        if(c.isVisible() == true){
+                            JFrame compFrame = new JFrame();
+                            compFrame.setSize(800, 600);
+                            compFrame.setVisible(true);
+                            compFrame.setLocationRelativeTo(null);
+                            try {
+                                new ComputerFrame(compFrame);
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            }                        }
                     }
+
                 }
             }
         });

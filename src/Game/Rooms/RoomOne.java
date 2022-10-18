@@ -1,9 +1,6 @@
 package Game.Rooms;
 
-import Game.Collectibles.Flashlight;
-import Game.Collectibles.Key;
-import Game.Collectibles.Lighter;
-import Game.Collectibles.Zoom;
+import Game.Collectibles.Zoom.Zoom;
 import Game.InteractiveObj.Computer.Computer;
 import Game.InteractiveObj.Door;
 import Game.InteractiveObj.Drawer;
@@ -50,10 +47,12 @@ public class RoomOne{
         labelRoom.setOpaque(false);
 
         //create Door in room
+
+        //
         doorEnd = new Door(new Point(644, 162), new Dimension(201, 436));
         doorEnd.getClosedDoorLabel().setBounds((int)doorEnd.getX(), (int)doorEnd.getY(), doorEnd.getDoorImg().getIconWidth(), doorEnd.getDoorImg().getIconHeight());
-        doorEnd.getOpenedDoorLabel().setBounds((int)doorEnd.getX(), (int)doorEnd.getY(), doorEnd.getDoorImg().getIconWidth(), doorEnd.getDoorImg().getIconHeight());
-        doorEnd.getOpenedDoorLabel().setOpaque(false);
+     //   doorEnd.getOpenedDoorLabel().setBounds(557, 130, doorEnd.getOpenedDoorLabel().getWidth(), doorEnd.getOpenedDoorLabel().getHeight());
+      //  doorEnd.getOpenedDoorLabel().setOpaque(false);
         doorEnd.setDoor(doorEnd.getOpenedDoorLabel(), false);
         doorEnd.getClosedDoorLabel().setOpaque(false);
 
@@ -99,4 +98,6 @@ public class RoomOne{
     public Switch getSwitch() {
         return switchStart;
     }
+
+
 }
