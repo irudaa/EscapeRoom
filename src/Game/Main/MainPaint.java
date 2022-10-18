@@ -19,7 +19,7 @@ public class MainPaint extends JComponent {
 
 
         try {
-            startPaintImage = ImageIO.read(new File("src/Images/Angle 38.png"));
+            startPaintImage = ImageIO.read(new File("src/Images/description.png"));
             imgSwitch = ImageIO.read(new File("src/Images/switch-36000_640 1.png"));
         }
         catch(IOException ex){

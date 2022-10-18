@@ -33,7 +33,7 @@ public class MirrorPaint extends JComponent {
                 g2.fillRect(x, y,30,30);
                 g2.dispose();
                 try {
-                    playErase();
+                    playNext();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 } catch (UnsupportedAudioFileException ex) {
@@ -41,6 +41,7 @@ public class MirrorPaint extends JComponent {
                 } catch (LineUnavailableException ex) {
                     throw new RuntimeException(ex);
                 }
+
                 repaint();
 
 
@@ -58,9 +59,9 @@ public class MirrorPaint extends JComponent {
         g2.dispose();
 
     }
-    public void playErase() throws IOException, UnsupportedAudioFileException, LineUnavailableException, LineUnavailableException, IOException {
+    public void playNext() throws IOException, UnsupportedAudioFileException, LineUnavailableException, LineUnavailableException, IOException {
         System.out.println("sound");
-        File f = new File("src/Music/erase.wav");
+        File f = new File("src/Music/next.wav");
         AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
         Clip clip = AudioSystem.getClip();
         clip.open(audioIn);
