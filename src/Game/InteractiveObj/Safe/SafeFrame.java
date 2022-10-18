@@ -4,12 +4,14 @@ import Game.InteractiveObj.Mirror.MirrorFrame;
 import Game.Inventory.Inventory;
 import Game.Inventory.InventoryView;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -80,7 +82,6 @@ public class SafeFrame {
         safeLayers.add(password, new Integer(3));
         safeLayers.add(key.getLabel(), new Integer(4));
 
-
     }
 
     public void initializeButtons(){
@@ -92,6 +93,8 @@ public class SafeFrame {
             public void mouseClicked(MouseEvent e) {
                 enteredPass = enteredPass + "1";
                 password.setText(enteredPass);
+                playBeepSound();
+
             }
         });
 
@@ -104,6 +107,7 @@ public class SafeFrame {
             public void mouseClicked(MouseEvent e) {
                 enteredPass = enteredPass + "2";
                 password.setText(enteredPass);
+                playBeepSound();
 
             }
         });
@@ -117,6 +121,7 @@ public class SafeFrame {
             public void mouseClicked(MouseEvent e) {
                 enteredPass = enteredPass + "3";
                 password.setText(enteredPass);
+                playBeepSound();
 
             }
         });
@@ -130,6 +135,7 @@ public class SafeFrame {
             public void mouseClicked(MouseEvent e) {
                 enteredPass = enteredPass + "4";
                 password.setText(enteredPass);
+                playBeepSound();
 
             }
         });
@@ -143,6 +149,7 @@ public class SafeFrame {
             public void mouseClicked(MouseEvent e) {
                 enteredPass = enteredPass + "5";
                 password.setText(enteredPass);
+                playBeepSound();
 
             }
         });
@@ -155,6 +162,7 @@ public class SafeFrame {
             public void mouseClicked(MouseEvent e) {
                 enteredPass = enteredPass + "6";
                 password.setText(enteredPass);
+                playBeepSound();
 
             }
         });
@@ -167,6 +175,7 @@ public class SafeFrame {
             public void mouseClicked(MouseEvent e) {
                 enteredPass = enteredPass + "7";
                 password.setText(enteredPass);
+                playBeepSound();
 
             }
         });
@@ -179,6 +188,7 @@ public class SafeFrame {
             public void mouseClicked(MouseEvent e) {
                 enteredPass = enteredPass + "8";
                 password.setText(enteredPass);
+                playBeepSound();
 
             }
         });
@@ -191,12 +201,14 @@ public class SafeFrame {
             public void mouseClicked(MouseEvent e) {
                 enteredPass = enteredPass + "9";
                 password.setText(enteredPass);
+                playBeepSound();
 
             }
         });
 
         enter = new JButton(new ImageIcon( new ImageIcon("src/Images/Group 12.png").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT)));
         enter.setContentAreaFilled(false);
+        enter.setBorder(null);
         addGB(enter, x = 4, y = 2);
         enter.addMouseListener(new MouseAdapter() {
             @Override
@@ -212,6 +224,16 @@ public class SafeFrame {
                     password.setText(error);
                     enteredPass = "";
                 }
+                playBeepSound();
+                try {
+                    playNext();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                } catch (UnsupportedAudioFileException ex) {
+                    throw new RuntimeException(ex);
+                } catch (LineUnavailableException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }
@@ -220,6 +242,36 @@ public class SafeFrame {
         constraints.gridx = x;
         constraints.gridy = y;
         numbers.add(component, constraints);
+    }
+
+    public static void playBeep() throws IOException, UnsupportedAudioFileException, LineUnavailableException, LineUnavailableException, IOException {
+        System.out.println("beep");
+        File f = new File("src/Music/beep.wav");
+        AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioIn);
+        clip.start();
+    }
+
+    public void playNext() throws IOException, UnsupportedAudioFileException, LineUnavailableException, LineUnavailableException, IOException {
+        System.out.println("coin");
+        File f = new File("src/Music/next.wav");
+        AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioIn);
+        clip.start();
+    }
+
+    public void playBeepSound(){
+        try {
+            playBeep();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        } catch (UnsupportedAudioFileException ex) {
+            throw new RuntimeException(ex);
+        } catch (LineUnavailableException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
 

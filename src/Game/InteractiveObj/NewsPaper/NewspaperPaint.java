@@ -12,13 +12,12 @@ import java.io.IOException;
 
 public class NewspaperPaint extends JComponent {
     BufferedImage newspaperPaintImage;
-
     public NewspaperPaint() throws IOException {
 
+        this.setBackground(Color.white);
 
         try {
             newspaperPaintImage = ImageIO.read(new File("src/Images/Rectangle 93.png"));
-
         }
         catch(IOException ex){
             ex.printStackTrace();
@@ -41,8 +40,6 @@ public class NewspaperPaint extends JComponent {
         });
     }
 
-
-
     @Override
     protected void paintComponent (Graphics g)
     {
@@ -50,6 +47,7 @@ public class NewspaperPaint extends JComponent {
         Graphics2D g2 = (Graphics2D) g.create();
         g2.drawImage(newspaperPaintImage, 0, 0, this);
         g2.dispose();
+
     }
 }
 

@@ -25,6 +25,8 @@ public class NewspaperFrame {
         JLabel newspaperCode = new JLabel(newspaperCodeImg);
         newspaperPaint = new NewspaperPaint();
 
+
+
         newspaperCode.setBounds(0, 0, width, height);
         newspaperCode.setOpaque(false);
 

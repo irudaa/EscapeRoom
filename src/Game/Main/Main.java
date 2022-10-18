@@ -23,6 +23,7 @@ public class Main {
                 newMainView.getEnd().setVisible(false);
                 newMainView.getReplay().setVisible(false);
                 newMainView.dispose();
+                newMainView.getFrame().dispose();
                   try {
                     newMainView = new MainView();
                     mvc = new MainViewController(newMainView);

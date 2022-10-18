@@ -30,7 +30,7 @@ public class PickableObject extends JComponent {
 
     public void playSound() throws IOException, UnsupportedAudioFileException, LineUnavailableException, LineUnavailableException, IOException {
         System.out.println("sound");
-        File f = new File("src/Sounds/bell.wav");
+        File f = new File("src/Music/bell.wav");
         AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
         Clip clip = AudioSystem.getClip();
         clip.open(audioIn);

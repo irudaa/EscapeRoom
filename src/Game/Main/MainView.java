@@ -3,12 +3,15 @@ package Game.Main;
 import Game.InteractiveObj.Switch;
 import Game.Inventory.Inventory;
 import Game.Rooms.Angle;
+import Game.Rooms.AngleView;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+import java.io.*;
+
 
 public class MainView extends JFrame {
 
@@ -70,9 +73,17 @@ public class MainView extends JFrame {
         addFirstWindow();
         setupStory();
         activateButtons();
+        try {
+            playBackgroundSound();
+        } catch (UnsupportedAudioFileException e) {
+            throw new RuntimeException(e);
+        } catch (LineUnavailableException e) {
+            throw new RuntimeException(e);
+        }
         endGame();
         frame.setVisible(true);
         frame.pack();
+
     }
 
 
@@ -159,6 +170,16 @@ public class MainView extends JFrame {
             public void actionPerformed(ActionEvent arg0) {
                 cardLayout.next(roomPanel);
                 roomPanel.revalidate();
+
+                try {
+                    playNext();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (UnsupportedAudioFileException e) {
+                    throw new RuntimeException(e);
+                } catch (LineUnavailableException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -168,9 +189,47 @@ public class MainView extends JFrame {
             public void actionPerformed(ActionEvent arg0) {
                 cardLayout.previous(roomPanel);
                 roomPanel.revalidate();
+
+                try {
+                    playNext();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (UnsupportedAudioFileException e) {
+                    throw new RuntimeException(e);
+                } catch (LineUnavailableException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
+
     }
+
+    public void playNext() throws IOException, UnsupportedAudioFileException, LineUnavailableException, LineUnavailableException, IOException {
+            System.out.println("coin");
+            File f = new File("src/Music/next.wav");
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.start();
+    }
+    public static void playMagic() throws IOException, UnsupportedAudioFileException, LineUnavailableException, LineUnavailableException, IOException {
+        System.out.println("open");
+        File f = new File("src/Music/magic.wav");
+        AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioIn);
+        clip.start();
+    }
+
+    public static void playSkill() throws IOException, UnsupportedAudioFileException, LineUnavailableException, LineUnavailableException, IOException {
+        System.out.println("open");
+        File f = new File("src/Music/skill.wav");
+        AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioIn);
+        clip.start();
+    }
+
 
     public void endGame(){
         ImageIcon img = new ImageIcon(new ImageIcon("src/Images/theEnd.png").getImage());
@@ -206,4 +265,19 @@ public class MainView extends JFrame {
     public MainPaint getStoryPaint(){
         return storyPaint;
     }
+    public void playBackgroundSound() throws IOException, UnsupportedAudioFileException, LineUnavailableException, LineUnavailableException, IOException {
+        System.out.println("sound");
+        File f = new File("src/Music/MysteriousMusic.wav");
+        AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+        Clip clip = AudioSystem.getClip();
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        clip.open(audioIn);
+        clip.start();
+    }
+    public Window getFrame(){
+        return frame;
+    }
+
+
+
 }

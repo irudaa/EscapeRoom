@@ -1,6 +1,7 @@
 package Game.InteractiveObj.Mirror;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -31,7 +32,19 @@ public class MirrorPaint extends JComponent {
                 g2.setComposite(AlphaComposite.Clear);
                 g2.fillRect(x, y,30,30);
                 g2.dispose();
+                try {
+                    playErase();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                } catch (UnsupportedAudioFileException ex) {
+                    throw new RuntimeException(ex);
+                } catch (LineUnavailableException ex) {
+                    throw new RuntimeException(ex);
+                }
                 repaint();
+
+
+
             }
         });
     }
@@ -44,5 +57,13 @@ public class MirrorPaint extends JComponent {
         g2.drawImage(mirrorPaintImage, 0, 0, this);
         g2.dispose();
 
+    }
+    public void playErase() throws IOException, UnsupportedAudioFileException, LineUnavailableException, LineUnavailableException, IOException {
+        System.out.println("sound");
+        File f = new File("src/Music/erase.wav");
+        AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioIn);
+        clip.start();
     }
 }

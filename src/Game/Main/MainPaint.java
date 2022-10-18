@@ -44,7 +44,7 @@ public class MainPaint extends JComponent {
                 int y = e.getY();
 
                     Graphics2D g2= startPaintImage.createGraphics();
-                    g2.setColor(Color.black);
+                    g2.setColor(new Color(0,0,0,50));
                     g2.fillRect(0, 0,1000,800);
                     g2.setComposite(AlphaComposite.Clear);
                     g2.fillOval(x - 100, y - 100,200,200);

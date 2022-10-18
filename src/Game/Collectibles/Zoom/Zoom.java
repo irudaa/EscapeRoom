@@ -3,10 +3,14 @@ package Game.Collectibles.Zoom;
 import Game.Collectibles.PickableObject;
 import Game.Inventory.InventoryView;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 
 public class Zoom extends PickableObject {
 
@@ -39,7 +43,6 @@ public class Zoom extends PickableObject {
     public void objectFound(){
         if(super.isFound() == true){
             label.setVisible(false);
-
         }
     }
     public void isClicked(){
@@ -50,10 +53,21 @@ public class Zoom extends PickableObject {
                     setFound(true);
                     objectFound();
                     inventory.getZoom().setLabelVisible(true);
+                    try {
+                        //playSound("bell");
+                        Zoom.super.playSound();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    } catch (UnsupportedAudioFileException ex) {
+                        throw new RuntimeException(ex);
+                    } catch (LineUnavailableException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             }
         });
     }
+
 
     public void setLabelVisible(boolean b) {
         label.setVisible(b);

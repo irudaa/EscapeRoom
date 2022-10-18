@@ -2,10 +2,16 @@ package Game.Collectibles;
 
 import Game.Inventory.InventoryView;
 
+import javax.print.attribute.standard.Media;
+import javax.sound.sampled.*;
 import javax.swing.*;
+import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 
 public class Lighter extends PickableObject {
 
@@ -47,9 +53,37 @@ public class Lighter extends PickableObject {
                     setFound(true);
                     objectFound();
                     inventory.getLighter().setLabelVisible(true);
+                    playBell();
                 }
             }
         });
+    }
+
+    private void playBell() {
+
+        String soundName = "src/Music/bell.wav";
+        AudioInputStream audioInputStream = null;
+        try {
+            audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+        } catch (UnsupportedAudioFileException ex) {
+            throw new RuntimeException(ex);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        Clip clip = null;
+        try {
+            clip = AudioSystem.getClip();
+        } catch (LineUnavailableException ex) {
+            throw new RuntimeException(ex);
+        }
+        try {
+            clip.open(audioInputStream);
+        } catch (LineUnavailableException ex) {
+            throw new RuntimeException(ex);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        clip.start();
     }
 
     public void setLabelVisible(boolean b) {

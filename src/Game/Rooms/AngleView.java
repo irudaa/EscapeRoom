@@ -7,8 +7,11 @@ import Game.Collectibles.Zoom.Zoom;
 import Game.InteractiveObj.Door;
 import Game.Inventory.InventoryView;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class AngleView extends JComponent{
 
@@ -72,14 +75,17 @@ public class AngleView extends JComponent{
         next.setBounds(930,700, 40,40);
         next.setContentAreaFilled(false);
         next.setOpaque(false);
+        next.setBorder(null);
 
         ImageIcon imageIcon2 = new ImageIcon(new ImageIcon("src/Images/leftButton.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
         previous = new JButton(imageIcon2);
         previous.setBounds(10,700, 40,40);
         previous.setContentAreaFilled(false);
         previous.setOpaque(false);
+        previous.setBorder(null);
 
     }
+
 
     public JButton getNext(){
         return next;

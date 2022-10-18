@@ -4,8 +4,10 @@ import Game.InteractiveObj.Mirror.MirrorFrame;
 import Game.InteractiveObj.Safe.SafeFrame;
 import Game.Inventory.InventoryView;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.File;
 import java.io.IOException;
 
 public class Angle extends JComponent{
@@ -40,11 +42,15 @@ public class Angle extends JComponent{
     }
 
     public void openDrawer(){
+
         firstAngle.getDrawer().getClosedDrawerLabel().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 firstAngle.getDrawer().setDrawer(firstAngle.getDrawer().getClosedDrawerLabel(), false);
                 firstAngle.getDrawer().setDrawer(firstAngle.getDrawer().getOpenedDrawerLabel(), true);
+
+                playOpenSound();
+
             }
         });
 
@@ -53,6 +59,8 @@ public class Angle extends JComponent{
             public void mouseClicked(MouseEvent e) {
                 firstAngle.getDrawer().setDrawer(firstAngle.getDrawer().getClosedDrawerLabel(), true);
                 firstAngle.getDrawer().setDrawer(firstAngle.getDrawer().getOpenedDrawerLabel(), false);
+
+                playOpenSound();
             }
         });
     }
@@ -70,6 +78,8 @@ public class Angle extends JComponent{
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+
+                playOpenSound();
             }
         });
     }
@@ -81,6 +91,9 @@ public class Angle extends JComponent{
                 secondAngle.getPainting().setPainting(secondAngle.getPainting().getClosedPaintingLabel(), false);
                 secondAngle.getPainting().setPainting(secondAngle.getPainting().getOpenedPaintingLabel(), true);
                 secondAngle.getSafe().setSafe(secondAngle.getSafe().getSafeLabel(), true);
+
+                playOpenSound();
+
             }
         });
 
@@ -90,6 +103,8 @@ public class Angle extends JComponent{
                 secondAngle.getPainting().setPainting(secondAngle.getPainting().getClosedPaintingLabel(), true);
                 secondAngle.getPainting().setPainting(secondAngle.getPainting().getOpenedPaintingLabel(), false);
                 secondAngle.getSafe().setSafe(secondAngle.getSafe().getSafeLabel(), false);
+
+                playOpenSound();
 
             }
         });
@@ -103,6 +118,8 @@ public class Angle extends JComponent{
             public void mouseClicked(MouseEvent e) {
                 fourthAngle.getPillow().setPillow(fourthAngle.getPillow().getClosedPillowLabel(), false);
                 fourthAngle.getPillow().setPillow(fourthAngle.getPillow().getOpenedPillowLabel(), true);
+
+                playOpenSound();
             }
         });
 
@@ -111,6 +128,8 @@ public class Angle extends JComponent{
             public void mouseClicked(MouseEvent e) {
                 fourthAngle.getPillow().setPillow(fourthAngle.getPillow().getClosedPillowLabel(), true);
                 fourthAngle.getPillow().setPillow(fourthAngle.getPillow().getOpenedPillowLabel(), false);
+
+                playOpenSound();
             }
         });
 
@@ -122,6 +141,8 @@ public class Angle extends JComponent{
             public void mouseClicked(MouseEvent e) {
                 fourthAngle.getBox().setBox(fourthAngle.getBox().getClosedBoxLabel(), false);
                 fourthAngle.getBox().setBox(fourthAngle.getBox().getOpenedBoxLabel(), true);
+
+                playOpenSound();
             }
         });
 
@@ -130,6 +151,8 @@ public class Angle extends JComponent{
             public void mouseClicked(MouseEvent e) {
                 fourthAngle.getBox().setBox(fourthAngle.getBox().getClosedBoxLabel(), true);
                 fourthAngle.getBox().setBox(fourthAngle.getBox().getOpenedBoxLabel(), false);
+
+                playOpenSound();
             }
         });
 
@@ -141,6 +164,8 @@ public class Angle extends JComponent{
             public void mouseClicked(MouseEvent e) {
                 thirdAngle.getCloset().setCloset(thirdAngle.getCloset().getClosedClosetLabel(), false);
                 thirdAngle.getCloset().setCloset(thirdAngle.getCloset().getOpenedClosetLabel(), true);
+
+                playOpenSound();
             }
         });
 
@@ -149,9 +174,10 @@ public class Angle extends JComponent{
             public void mouseClicked(MouseEvent e) {
                 thirdAngle.getCloset().setCloset(thirdAngle.getCloset().getClosedClosetLabel(), true);
                 thirdAngle.getCloset().setCloset(thirdAngle.getCloset().getOpenedClosetLabel(), false);
+
+                playOpenSound();
             }
         });
-
     }
 
 
@@ -168,9 +194,33 @@ public class Angle extends JComponent{
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+                playOpenSound();
             }
         });
+
     }
+
+    public static void playOpen() throws IOException, UnsupportedAudioFileException, LineUnavailableException, LineUnavailableException, IOException {
+        System.out.println("open");
+        File f = new File("src/Music/open.wav");
+        AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioIn);
+        clip.start();
+    }
+
+    public void playOpenSound(){
+        try {
+            playOpen();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        } catch (UnsupportedAudioFileException ex) {
+            throw new RuntimeException(ex);
+        } catch (LineUnavailableException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
 
 
     public AngleView getView() {

@@ -1,7 +1,10 @@
 package Game.InteractiveObj.Safe;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Safe {
 
@@ -14,8 +17,6 @@ public class Safe {
        safeLabel = new JLabel(safeImg);
        safeLabel.setBounds(400, 195, safeImg.getIconWidth(), safeImg.getIconHeight());
        safeLabel.setOpaque(false);
-
-
     }
 
     public JLabel getSafeLabel(){
@@ -27,4 +28,6 @@ public class Safe {
     public void setSafe(JLabel label, boolean bool){
         label.setVisible(bool);
     }
+
+
 }

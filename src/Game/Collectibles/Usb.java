@@ -2,10 +2,13 @@ package Game.Collectibles;
 
 import Game.Inventory.InventoryView;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 public class Usb extends PickableObject{
 
@@ -54,6 +57,16 @@ public class Usb extends PickableObject{
                     setFound(true);
                     objectFound();
                     inventory.getUsb().setLabelVisible(true);
+
+                    try {
+                        Usb.super.playSound();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    } catch (UnsupportedAudioFileException ex) {
+                        throw new RuntimeException(ex);
+                    } catch (LineUnavailableException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             }
         });
