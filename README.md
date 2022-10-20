@@ -67,4 +67,4 @@ Give credit here.
 - 
 
 ## Contact
-Created by [@irudaa](jiin.lim@universite-paris-saclay.fr) & [@hibaslimani](hiba.slimani@university-paris-saclay.fr) - feel free to contact me!
+Created by irudaa( jiin.lim@universite-paris-saclay.fr) & hibaslimani (hiba.slimani@university-paris-saclay.fr) - feel free to contact me!
