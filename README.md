@@ -1,12 +1,13 @@
 # Let Me Out!
 > Let me out is a room escape game built using Java Swing and IntellIJ. This game is playable on a computer screen and for the moment there is only the computer version. There are various interactions involved such as mouse clicks, hover, and dragging. The goal is to find the hidden items around the room and try to get out of it within the limited time.
-![screenshot](https://user-images.githubusercontent.com/57294220/197063100-41b1cbb5-ad0f-43be-90f0-e16b7d19c016.png)
+>
+![screenshot](https://user-images.githubusercontent.com/57294220/197063803-4c767754-2bdb-4dea-b80f-1b9cc7813b8c.jpg)
 
 ## Table of Contents
 * [General Info](#general-information)
 * [Technologies Used](#technologies-used)
 * [Features](#features)
-* [Demo](#Demo)
+* [Demo](#screenshots)
 * [Setup](#setup)
 * [Usage](#usage)
 * [Project Status](#project-status)
@@ -39,8 +40,8 @@ Item interactions:
 - Interactive objects: active when clicked (Drawer, closet, pillow, box, painting)
 - Safe: Button clicking gives the number clicked
 
-## Demo
-https://user-images.githubusercontent.com/57294220/197063014-df7808f8-3871-4a91-9c70-a10e4ca2e93d.mp4
+## Screenshots
+![Example screenshot](./img/screenshot.png)
 
 
 ## Setup
