@@ -1,7 +1,5 @@
 # Let Me Out!
-> Let me out is a room escape game built on JAVA  Swing that you can play with various interactions such as a mouse click, hover, and dragging. Found the hidden items around the room and try to get out of it in the limited time.
-
-> Live demo [here](https://www.example.com). 
+> Let me out is a room escape game built using Java Swing and IntellIJ. This game is playable on a computer screen and for the moment there is only the computer version. There are various interactions involved such as mouse clicks, hover, and dragging. The goal is to find the hidden items around the room and try to get out of it in the limited time.
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -14,15 +12,9 @@
 * [Room for Improvement](#room-for-improvement)
 * [Acknowledgements](#acknowledgements)
 * [Contact](#contact)
-<!-- * [License](#license) -->
-
 
 ## General Information
-- Provide general information about your project here.
-- What problem does it (intend to) solve?
-- What is the purpose of your project?
-- Why did you undertake it?
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
+The purpose of this project is for the user to discover how to get out of the room while also solving the mystery of the character’s life. The game has a first person point of view and is composed of several static scenes of one room. The player can navigate through different angles of said room. He has to find clues in order to get out as fast as possible. Users can gain and use special tools to interact with the objects in the scene.
 
 
 ## Technologies Used
@@ -31,16 +23,20 @@
 - OS : No specific OS required, but tested on Linux(ubuntu) and Windows.
 
 ## Features
-- Inventory : Register the found item, drag item from the Inventory to use.
+- Inventory : Register the found item, drag item from the Inventory to use
+- Rooms: Different rooms hold different objects to be picked and to be interacted with
+- Pickable Objects: Objects found within the room which can be picked and found in the inventory
+- Interactive Items: Items within the room that if they are paired with the a picked object, they allow a new interaction and a new clue to be found
 
-Item interactions
-- Basic interaction : Mouse Click to interact with items and objects in the game.
-- Light up the switch : Find a switch in a darkroom with lighting cursor
-- Newspaper : Hovering to find hidden letter
-- UV Light : Dragging 
-- Cleaning(Scratching) dust: Clean the dirty paint to find the hint
-- Zoom effect : Navigate the zoomed interface with magnifier to find a hint
-
+Item interactions:
+- Basic interaction : Double Mouse Click to pick up objects in the game.
+- Light up the switch : Hovering in a darkroom with a transparent circle put in the cursor position, light switches on when clicked
+- Newspaper : Hovering around the frame to find the hidden number
+- UV Light : Dragging the flashlight tool, which activates the quarter of a circle, which if dragged to the right position in the room makes a number appear 
+- Cleaning(Scratching) dust: Clean the dirty mirror to find the hint, dragging over the darker mirror continuously
+- Zoom effect : Zoom item is dragged over the first room, zooming the image. Navigation is possible through the dragging of the image
+- Interactive objects: active when clicked (Drawer, closet, pillow, box, painting)
+- Safe: Button clicking gives the number clicked
 
 ## Screenshots
 ![Example screenshot](./img/screenshot.png)
@@ -50,27 +46,16 @@ Item interactions
 - Excutable by exe.file attached
 - Runnable on IntelliJ Main
 
-Proceed to describe how to install / setup one's local environment / get started with the project.
 
-
-## Usage
-How does one go about using it?
-Provide various use cases and code examples here.
-
-`write-your-code-here`
-
-
-## Project Status
-Project is: in progress / complete / no longer being worked on. If you are no longer working on it, provide reasons why.
 
 
 ## Room for Improvement
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
+There are certain technical aspects which need improvement on. The zoom item works on every room, except that it always shows the zoom of first room, mostly because we designed it to only give a clue for one room. Also the pickable items open new frames instead of being added to the one main frame. That means that for example, the safe once it has been closed and reopened, the key inside is still there even if picked, because the frame gets restarted everytime. 
 
 
-## Room for improvement:
+## Room for future implementations:
 - Add story boarding
-- Active objects
+- Other active objects
 - Add more levels and constrains such as timer
 
 ## Acknowledgements
