@@ -9,8 +9,6 @@
 * [Features](#features)
 * [Demo](#demo)
 * [Setup](#setup)
-* [Usage](#usage)
-* [Project Status](#project-status)
 * [Room for Improvement](#room-for-improvement)
 * [Acknowledgements](#acknowledgements)
 * [Contact](#contact)
@@ -45,8 +43,6 @@ Item interactions:
 https://user-images.githubusercontent.com/57294220/197063993-7928243a-26c4-4c92-bb3f-635fb2d270bb.mp4
 
 
-
-
 ## Setup
 - Excutable by exe.file attached
 - Runnable on IntelliJ Main
@@ -64,7 +60,6 @@ There are certain technical aspects which need improvement on. The zoom item wor
 ## Acknowledgements
 Give credit here.
 - The navigation of the scrollPane by dragging was inspired by [here](https://stackoverflow.com/questions/10243257/java-scroll-image-by-mouse-dragging)
-- 
 
 ## Contact
 Created by irudaa( jiin.lim@universite-paris-saclay.fr) & hibaslimani (hiba.slimani@university-paris-saclay.fr) - feel free to contact me!
