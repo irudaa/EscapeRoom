@@ -7,7 +7,7 @@
 * [General Info](#general-information)
 * [Technologies Used](#technologies-used)
 * [Features](#features)
-* [Demo](#screenshots)
+* [Demo](#demo)
 * [Setup](#setup)
 * [Usage](#usage)
 * [Project Status](#project-status)
@@ -40,15 +40,16 @@ Item interactions:
 - Interactive objects: active when clicked (Drawer, closet, pillow, box, painting)
 - Safe: Button clicking gives the number clicked
 
-## Screenshots
-![Example screenshot](./img/screenshot.png)
+## Demo
+
+https://user-images.githubusercontent.com/57294220/197063993-7928243a-26c4-4c92-bb3f-635fb2d270bb.mp4
+
+
 
 
 ## Setup
 - Excutable by exe.file attached
 - Runnable on IntelliJ Main
-
-
 
 
 ## Room for Improvement
