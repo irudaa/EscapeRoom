@@ -1,5 +1,5 @@
 # Let Me Out!
-> Let me out is a room escape game built using Java Swing and IntellIJ. This game is playable on a computer screen and for the moment there is only the computer version. There are various interactions involved such as mouse clicks, hover, and dragging. The goal is to find the hidden items around the room and try to get out of it in the limited time.
+> Let me out is a room escape game built using Java Swing and IntellIJ. This game is playable on a computer screen and for the moment there is only the computer version. There are various interactions involved such as mouse clicks, hover, and dragging. The goal is to find the hidden items around the room and try to get out of it within the limited time.
 
 ## Table of Contents
 * [General Info](#general-information)
