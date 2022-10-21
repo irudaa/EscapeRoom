@@ -45,7 +45,7 @@ https://user-images.githubusercontent.com/57294220/197063993-7928243a-26c4-4c92-
 
 ## Setup
 - Excutable by [exe](https://drive.google.com/file/d/1Dvm0zhn8gVduu9IM_lYy6-zy4HmDYCvo/view?usp=sharing)
-- Excutable by [jar](https://drive.google.com/file/d/1uHIixfCcPp933_F9_r-hQQGEZ5Le-gM7/view?usp=sharing)
+- [jar](https://drive.google.com/file/d/1uHIixfCcPp933_F9_r-hQQGEZ5Le-gM7/view?usp=sharing)
 - Runnable on IntelliJ Main
 
 
