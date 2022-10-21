@@ -59,7 +59,6 @@ There are certain technical aspects which need improvement on. The zoom item wor
 - Add more levels and constrains such as timer
 
 ## Acknowledgements
-Give credit here.
 - The navigation of the scrollPane by dragging was inspired by [here](https://stackoverflow.com/questions/10243257/java-scroll-image-by-mouse-dragging)
 
 ## Contact
